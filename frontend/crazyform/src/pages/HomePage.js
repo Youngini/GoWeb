@@ -5,7 +5,7 @@ const HomePage = () => {
     const navigate = useNavigate();
 
     const handleButtonClick = () => {
-        navigate('/SurveyAdmin');
+        navigate('/AdminSurvey');
     };
 
     const styles = {
