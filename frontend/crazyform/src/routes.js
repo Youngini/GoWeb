@@ -2,7 +2,6 @@
 
 import AdminSurveyPage from "./pages/AdminSurveyPage";
 import HomePage from "./pages/HomePage";
-import AdminSurvey from "./pages/AdminSurvey";
 
 const routes = [
   {
