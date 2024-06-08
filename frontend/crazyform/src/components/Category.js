@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import './Category.css'
+import './style/Category.css'
 
 export default function Category({categoryName}) {
 

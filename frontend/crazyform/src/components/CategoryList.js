@@ -1,6 +1,6 @@
 import React from 'react'
 import Category from './Category'
-import './CategoryList.css'
+import './style/CategoryList.css'
 
 export default function CategoryList() {
     

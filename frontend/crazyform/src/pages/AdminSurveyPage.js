@@ -1,5 +1,5 @@
 import AdminTopNavbar from "../components/AdminTopNavBar";
-import CategoryList from '../component/CategoryList'
+import CategoryList from '../components/CategoryList'
 
 const AdminSurveyPage = () => {
     return(
