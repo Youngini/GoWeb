@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import CategoryList from '../component/CategoryList';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -108,6 +109,7 @@ const HomePage = () => {
                         <button style={{ ...styles.primaryButton, ...styles.primaryButtonLastChild }}>투표하러가기</button>
                     </div>
                 </div>
+            
             </div>
         </div>
     );

@@ -1,0 +1,16 @@
+.CategoryFrame {
+    display : flex;
+    flex-direction: column;
+    /* border : 1px solid black; */
+}
+
+.CategoryTitle {
+    font-size : 30px;
+    margin : 10px;
+}
+
+.CategoryList {
+    display : flex;
+    flex-direction: column;
+    /* border : 1px solid black; */
+}
