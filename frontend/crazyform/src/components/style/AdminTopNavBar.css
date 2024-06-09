@@ -8,6 +8,22 @@
 .navbuttonContainer{
     /* border : 1px solid black; */
     width : 70vw;
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    border-Bottom : 2px solid #EAA0A0
+}
+
+.button{
+    width : 20vw;
+    height : 8vh;
+    border-Radius : 2vh;
+    border: 3px solid #EAA0A0;
+    font-Size : 3vh
+}
+
+.button:hover{
+    font-weight: bold;
 }
 
 .addAdmin,
@@ -28,4 +44,17 @@
 .logout:hover{
     background-color: #B28D0A;
     color : white;
+}
+
+.signupmodalbutton{
+    background-color: white;
+    color : black;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    transition: .4s;
+}
+
+.signupmodalbutton:hover{
+    background-color: grey;
+    color : white
 }

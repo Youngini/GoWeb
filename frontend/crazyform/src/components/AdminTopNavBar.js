@@ -39,10 +39,9 @@ const AdminTopNavbar = () => {
             console.log(id, password);
             setId('')
             setPassword('')
+            alert('관리자를 추가하였습니다.')
         } else{
-
             setIsSignUpModal(false); 
-
         }
     }
         setIsSignUpModal(false); 
@@ -58,22 +57,12 @@ const AdminTopNavbar = () => {
     return(
         <div className='navbarFrame'>
             <Logo />
-            <div className='navbuttonContainer' style={{
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center',
-                borderBottom : '2px solid #EAA0A0'
-            }}>
+            <div className='navbuttonContainer'>
                 <div style={{
                     margin : '5vh'
                 }}>
-                    <button style={{
-                        width : '20vw',
-                        height : '8vh',
-                        borderRadius : '2vh',
-                        backgroundColor : surveyButtonBackground,
-                        border: '3px solid #EAA0A0',
-                        fontSize : '3vh',
+                    <button className='button' style={{
+                        backgroundColor : surveyButtonBackground
                     }}
                         onClick={goToAdminSurvey}>
                         설문 페이지
@@ -84,13 +73,8 @@ const AdminTopNavbar = () => {
                     display : 'flex',
                     flexDirection : 'row'
                 }}>
-                    <button style={{
-                        width : '20vw',
-                        height : '8vh',
-                        borderRadius : '2vh',
+                    <button className='button' style={{
                         backgroundColor : voteButtonBackground,
-                        border: '3px solid #EAA0A0',
-                        fontSize : '3vh'
                     }}>
                         투표 페이지
                     </button>
@@ -117,7 +101,9 @@ const AdminTopNavbar = () => {
                                 transform: 'translate(-50%, -50%)', 
                                 backgroundColor: 'white', 
                                 padding: '5vh', 
-                                zIndex: 1000 
+                                zIndex: 1000,
+                                borderRadius : '2vh',
+                                border : '0.5vh solid black'
                             }}>
                                 <div
                                     style={{
@@ -149,16 +135,17 @@ const AdminTopNavbar = () => {
                                     justifyContent : 'center',
                                     marginTop : '2vh'
                                 }}>
-                                <button 
+                                <button className='signupmodalbutton' 
                                     style={{
                                         marginRight : '1vw'
                                     }}
                                     onClick={closeSignUpModal}>취소</button>
-                                <button onClick={handleSubmit}>확인</button>
+                                <button 
+                                    className='signupmodalbutton'
+                                    onClick={handleSubmit}>확인</button>
                                 </div>
                             </div>
                         )}
-                        {/* 모달 뒤 배경을 어둡게 처리 */}
                         {isSignUpModal && (
                             <div style={{
                                 position: 'fixed',
