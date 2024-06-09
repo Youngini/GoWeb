@@ -1,0 +1,38 @@
+.logo {
+    width : 150px;
+    height : 150px;
+    perspective: 400px;
+}
+
+.logo .front,
+.logo .back {
+    /* border : 2px solid black; */
+    width: inherit; /* inherit : 부모 요소 값 상속 받기 */
+    height: inherit; 
+    position: absolute; /* position 은 앞/뒷면 을 겹치기 위한 의도 */
+    transition: 1s;
+    backface-visibility: hidden; /* 뒷면일 때, 뒷면은 숨기기 속성  */
+}
+
+.logo .front {
+    transform: rotateY(0deg); /* 명시적으로 hover 전 0도 (앞면) */
+}
+
+.logo:hover .front {
+    transform: rotateY(180deg); /* hover 시 뒷면(backface) */
+}
+
+.logo .back {
+    transform: rotateY(-180deg); /* 처음에 뒷면(backface) = 숨겨져 있음 */
+    font-size : 20px;
+    text-align: center;
+    font-weight: 700;
+    display :flex;
+    align-items: center;
+    border : 2px solid #B765B3;
+    border-radius: 50%;
+}
+
+.logo:hover .back {
+    transform: rotateY(0deg); /* hover 시 앞면 보여주기 */
+}

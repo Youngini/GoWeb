@@ -1,0 +1,17 @@
+.addAdmin,
+.logout{
+    width : 140px;
+    height : 40px;
+    border: 3px solid #B28D0A;
+    font-size : 20px;
+    font-weight : bold;
+    border-radius : 30px;
+    background-color: white;
+    transition: .5s;
+}
+
+.addAdmin:hover,
+.logout:hover{
+    background-color: #B28D0A;
+    color : white;
+}

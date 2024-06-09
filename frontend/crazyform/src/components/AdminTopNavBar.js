@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
-
+import './style/AdminTopNavBar.css'
 const AdminTopNavbar = () => {
 
     const location = useLocation();
@@ -101,7 +101,7 @@ const AdminTopNavbar = () => {
                         display : 'flex',
                         flexDirection : 'column',
                     }}>
-                        <button 
+                        <button className='addAdmin'
                             style={{
                                 marginBottom : '2vh'
                             }}
@@ -167,7 +167,7 @@ const AdminTopNavbar = () => {
                                 zIndex: 999
                             }} onClick={closeSignUpModal}></div>
                         )}
-                        <button
+                        <button className='logout'
                             onClick={goToHome}>
                             로그아웃
                         </button>
