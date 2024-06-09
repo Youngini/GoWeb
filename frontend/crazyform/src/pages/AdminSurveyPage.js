@@ -1,20 +1,22 @@
+import React, { useState } from 'react';
 import AdminTopNavbar from "../components/AdminTopNavBar";
-import CategoryList from '../components/CategoryList'
-import FormList from "../components/FormList"
-import '../components/style/AdminSurveyPage.css'
+import CategoryList from '../components/CategoryList';
+import FormList from "../components/FormList";
+import '../components/style/AdminSurveyPage.css';
 
 const AdminSurveyPage = () => {
-    return(
-        <div>
-            {/* <Logo /> */}
-            <AdminTopNavbar />
-            <div className='surveypageContent'>
-                <CategoryList></CategoryList>
-                <FormList></FormList>
-            </div>
+  const [activeCategory, setActiveCategory] = useState(null);
 
-        </div>
-    )
-}
+  return (
+    <div>
+      {/* <Logo /> */}
+      <AdminTopNavbar />
+      <div className='surveypageContent'>
+        <CategoryList onCategoryChange={setActiveCategory} />
+        <FormList activeCategory={activeCategory} />
+      </div>
+    </div>
+  );
+};
 
 export default AdminSurveyPage;

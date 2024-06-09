@@ -1,16 +1,10 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './style/Category.css'
 
-export default function Category({categoryName}) {
-
-  const [isActive, setIsActive] = useState(false)
-
-  const handleClick = () => {
-    setIsActive(!isActive)
-  }
+export default function Category({categoryName, isActive , onClick}) {
 
   return (
-    <button onClick={handleClick} className={`${isActive ? 'categoryItem-active' : 'categoryItem'}`}>
+    <button onClick={onClick} className={`${isActive ? 'categoryItem-active' : 'categoryItem'}`}>
       # {categoryName}
     </button>
   )
