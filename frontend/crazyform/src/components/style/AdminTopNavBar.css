@@ -1,3 +1,15 @@
+.navbarFrame{
+    display : flex;
+    margin-top : 20px;
+    /* border-bottom : 2px solid #EAA0A0; */
+    /* border: 1px solid black; */
+}
+
+.navbuttonContainer{
+    /* border : 1px solid black; */
+    width : 70vw;
+}
+
 .addAdmin,
 .logout{
     width : 140px;
@@ -8,6 +20,8 @@
     border-radius : 30px;
     background-color: white;
     transition: .5s;
+    margin-left : 50px;
+    margin-right : -100px;
 }
 
 .addAdmin:hover,

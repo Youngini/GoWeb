@@ -1,18 +1,21 @@
-.CategoryFrame {
-    display : flex;
-    flex-direction: column;
-    margin-left : 30px;
-    margin-right : 40px;
-    /* border : 1px solid black; */
-}
-
-.CategoryTitle {
-    font-size : 30px;
-    margin : 10px;
-}
-
-.CategoryList {
+.formlistWrapper {
     display : flex;
     flex-direction: column;
     /* border : 1px solid black; */
+}
+
+.formlistInfo {
+    display : flex;
+    flex-direction: column;
+    /* border : 1px solid black; */
+}
+
+.listCategory {
+    font-size : 40px;
+    margin-top : 5px;
+}
+
+.listCount {
+    font-size : 20px;
+    margin : 10px 0;
 }
