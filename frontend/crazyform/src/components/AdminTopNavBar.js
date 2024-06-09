@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './style/AdminTopNavBar.css'
+import Logo from './logo';
+
 const AdminTopNavbar = () => {
 
     const location = useLocation();
@@ -54,12 +56,13 @@ const AdminTopNavbar = () => {
     }
 
     return(
-        <div>
-            <div style={{
+        <div className='navbarFrame'>
+            <Logo />
+            <div className='navbuttonContainer' style={{
                 display: 'flex',
                 justifyContent: 'center',
                 alignItems: 'center',
-                borderBottom : '1px solid #EAA0A0'
+                borderBottom : '2px solid #EAA0A0'
             }}>
                 <div style={{
                     margin : '5vh'

@@ -1,12 +1,18 @@
 import AdminTopNavbar from "../components/AdminTopNavBar";
 import CategoryList from '../components/CategoryList'
-import Logo from "../components/logo";
+import FormList from "../components/FormList"
+import '../components/style/AdminSurveyPage.css'
+
 const AdminSurveyPage = () => {
     return(
         <div>
-            <Logo />
+            {/* <Logo /> */}
             <AdminTopNavbar />
-            <CategoryList></CategoryList>
+            <div className='surveypageContent'>
+                <CategoryList></CategoryList>
+                <FormList></FormList>
+            </div>
+
         </div>
     )
 }

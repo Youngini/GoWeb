@@ -1,0 +1,4 @@
+.surveypageContent {
+    display : flex;
+    flex-direction: row;
+}

@@ -1,0 +1,54 @@
+.formWrapper {
+    box-sizing : border-box;
+    width : 70vw;
+    height: 14vh;
+    border : 3px solid black;
+    border-radius: 20px;
+    position : relative;
+    margin-bottom : 20px;
+}
+
+.formTitle {
+    position: absolute;
+    top : 40px;
+    left : 20px;
+    font-size : 30px;
+}
+
+.showResponse {
+    width : 100px;
+    height : 45px;
+    border : 3px solid #1891B7;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    position: absolute;
+    right : 150px;
+    top : 35px;
+    text-align : center;
+    transition: .4s;
+}
+
+.activeForm {
+    width : 120px;
+    height : 45px;
+    border : 3px solid #B7183E;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    position: absolute;
+    right : 20px;
+    top : 35px;
+    text-align: center;
+    transition: .4s;
+}
+.activeForm:hover {
+    background-color: #B7183E;
+    color : white;
+}
+.showResponse:hover {
+    background-color: #1891B7;
+    color : white;
+}
