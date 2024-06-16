@@ -1,0 +1,27 @@
+.surveydetailpageContent{
+    display: flex;
+    flex-direction: row;
+}
+
+.buttonContent{
+    display: flex;
+    flex-direction: column;
+    margin-left : 6vw;
+    margin-right : 5vw;
+    margin-top: 3vh;
+
+}
+
+.buttonWrap-active{
+    margin-bottom : 5vh;
+    font-size: 3vh;
+    font-weight: bold;
+}
+
+.buttonWrap{
+    margin-bottom : 5vh;
+    font-size: 3vh;
+}
+
+
+
