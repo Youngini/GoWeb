@@ -1,0 +1,25 @@
+spring:
+  jpa:
+    hibernate:
+      database-platform: org.hibernate.dialect.MySQL8Dialect
+      ddl-auto: update
+      show_sql: true
+  servlet:
+    multipart:
+      enabled: true
+      max-file-size: 15MB
+      max-request-size: 15MB
+  config:
+    additional-location: classpath:application-secret.yml
+logging:
+  level:
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type: TRACE
+server:
+  servlet:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  tomcat:
+    max-http-form-post-size: 15MB
