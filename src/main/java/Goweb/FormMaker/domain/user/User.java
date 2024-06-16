@@ -1,4 +1,4 @@
-package Goweb.FormMaker.Domain.user;
+package Goweb.FormMaker.domain.user;
 
 import jakarta.persistence.*;
 import lombok.Getter;

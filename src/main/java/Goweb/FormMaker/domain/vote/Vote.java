@@ -1,6 +1,6 @@
-package Goweb.FormMaker.Domain.vote;
+package Goweb.FormMaker.domain.vote;
 
-import Goweb.FormMaker.Domain.user.User;
+import Goweb.FormMaker.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

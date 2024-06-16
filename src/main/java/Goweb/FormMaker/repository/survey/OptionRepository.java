@@ -1,6 +1,7 @@
-package Goweb.FormMaker.Repository.survey;
+package Goweb.FormMaker.repository.survey;
 
-import Goweb.FormMaker.Domain.vote.Option;
+
+import Goweb.FormMaker.domain.survey.Option;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

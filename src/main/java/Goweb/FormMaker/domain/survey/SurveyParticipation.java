@@ -1,6 +1,6 @@
-package Goweb.FormMaker.Domain.survey;
+package Goweb.FormMaker.domain.survey;
 
-import Goweb.FormMaker.Domain.user.User;
+import Goweb.FormMaker.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;

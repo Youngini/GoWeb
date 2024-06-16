@@ -1,6 +1,6 @@
-package Goweb.FormMaker.Repository.user;
+package Goweb.FormMaker.repository.user;
 
-import Goweb.FormMaker.Domain.user.User;
+import Goweb.FormMaker.domain.user.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 

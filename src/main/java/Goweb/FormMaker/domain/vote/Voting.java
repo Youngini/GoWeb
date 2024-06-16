@@ -1,4 +1,4 @@
-package Goweb.FormMaker.Domain.vote;
+package Goweb.FormMaker.domain.vote;
 
 import jakarta.persistence.*;
 import lombok.Getter;
