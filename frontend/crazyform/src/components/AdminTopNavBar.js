@@ -8,7 +8,7 @@ const AdminTopNavbar = () => {
 
     const location = useLocation();
     const navigate = useNavigate();
-    const surveyButtonBackground = location.pathname === '/AdminSurvey' ? '#EAA0A0' : 'white';
+    const surveyButtonBackground = location.pathname.startsWith('/AdminSurvey') ? '#EAA0A0' : 'white';
     const voteButtonBackground = location.pathname === '/AdminVote' ? '#EAA0A0' : 'white';
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');

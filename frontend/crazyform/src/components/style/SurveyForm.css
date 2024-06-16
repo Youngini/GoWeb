@@ -1,0 +1,131 @@
+.survey-form{
+    margin-left: 5vw;
+}
+
+.firstinput{
+    width: 75%;
+    height: 40%;
+    margin-left: 2vw;
+    border : 1px solid black;
+    border-radius: 1vh;
+}
+
+.secondinputwrap{
+    margin-bottom: 1vh;
+    margin-left: 2vw;
+}
+
+.question{
+    display: flex;
+    flex-direction: column;
+}
+
+.makerow{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.deleteqwrap {
+    margin-top: auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    justify-content: flex-end;
+    margin-bottom: 1vh;
+    margin-right: 1vw;
+}
+
+.addoptionwrap{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1vh;
+    margin-right: 1vw;
+}
+
+.addoption {
+    width: 8vw;
+    height: 4vh;
+    border-radius: 2vh;
+    border : 3px solid black;
+    background-color: white;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.addoption:hover {
+    width: 8vw;
+    height: 4vh;
+    border-radius: 2vh;
+    border : 3px solid black;
+    background-color: black;
+    font-weight: bold;
+    color: white;
+}
+
+
+.questionadd{
+    width: 60vw;
+    height: 7vh;
+    border : 3px solid grey;
+    border-radius: 2vh;
+    margin-top: 2vh;
+    background-color: white;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.questionadd:hover{
+    width: 60vw;
+    height: 7vh;
+    border : 3px solid grey;
+    border-radius: 2vh;
+    margin-top: 2vh;
+    background-color: grey;
+    font-weight: bold;
+    color : white
+}
+
+.question{
+    width: 60vw;
+    height: 200px;
+    border: 2px solid black;
+    border-radius: 2vh;
+    margin-top: 5vh;
+}
+
+.selectoptionwrap{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 1vh;
+    margin-right: 1vw; 
+}
+
+.selectoption{
+    width: 8vw;
+    height: 4vh;
+    border : 3px solid skyblue;
+    border-radius: 1vh;
+    background-color: white;
+    font-weight: bold;
+}
+
+.deleteq{
+    width: 8vw;
+    height: 4vh;
+    border: 3px solid grey;
+    border-radius: 2vh;
+    background-color: white;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.deleteq:hover{
+    width: 8vw;
+    height: 4vh;
+    border: 3px solid grey;
+    border-radius: 2vh;
+    background-color: grey;
+    font-weight: bold; 
+    color : white
+}

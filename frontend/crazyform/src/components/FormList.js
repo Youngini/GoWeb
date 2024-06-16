@@ -4,11 +4,11 @@ import './style/FormList.css';
 
 export default function FormList({ activeCategory }) {
   const forms = [
-    { title: '2024 MT 수요조사', hashtag: '각종 MT' },
-    { title: '산사랑 MT 수요조사', hashtag: '각종 MT' },
-    { title: '산사랑 멘토링 신청', hashtag: '멘토링' },
-    { title: '멘토링 신청', hashtag: '멘토링' },
-    { title: '야식마차 신청', hashtag: '야식마차' }
+    { id : 1, title: '2024 MT 수요조사', hashtag: '각종 MT' },
+    { id : 2, title: '산사랑 MT 수요조사', hashtag: '각종 MT' },
+    { id : 3, title: '산사랑 멘토링 신청', hashtag: '멘토링' },
+    { id : 4, title: '멘토링 신청', hashtag: '멘토링' },
+    { id : 5, title: '야식마차 신청', hashtag: '야식마차' }
   ];
 
   const filteredForms = activeCategory === '전체' || !activeCategory
@@ -21,8 +21,8 @@ export default function FormList({ activeCategory }) {
         <div className='listCategory'># {activeCategory || '전체'}</div>
         <div className='listCount'>{filteredForms.length}개의 항목</div>
       </div>
-      {filteredForms.map((form, index) => (
-        <Form key={index} hashtag={form.hashtag} title={form.title} />
+      {filteredForms.map((form) => (
+        <Form key={form.id} formId={form.id} hashtag={form.hashtag} title={form.title}/>
       ))}
     </div>
   );
