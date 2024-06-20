@@ -10,9 +10,39 @@
     /* border : 1px solid black; */
 }
 
+.listCategoryWrap{
+    display: flex;
+    flex-direction: row;
+    margin-top : 5px;
+}
+
 .listCategory {
     font-size : 40px;
-    margin-top : 5px;
+}
+
+.addSurveybutton{
+    margin-top: 0.8vh;
+    margin-left: 2vw;
+    width: 8vw;
+    height: 4vh;
+    border-radius: 1vh;
+    border : 2px solid black;
+    background-color: white;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.addSurveybutton:hover{
+    margin-top: 0.8vh;
+    margin-left: 2vw;
+    width: 8vw;
+    height: 4vh;
+    border-radius: 1vh;
+    border : 2px solid black;
+    background-color: black;
+    color : white;
+    font-weight: bold;
+    transition: .4s;
 }
 
 .listCount {
