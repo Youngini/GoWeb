@@ -1,5 +1,6 @@
 import { useState } from "react";
 import './style/SurveyForm.css';
+import { useLocation } from 'react-router-dom';
 
 const QUESTION_TYPES = {
     SHORT_ANSWER: "short_answer",
@@ -72,7 +73,9 @@ const Question = ({ question, onUpdate, onDelete }) => {
                                     onChange={(e) => handleOptionChange(index, e.target.value)}
                                     placeholder={`옵션 ${index+1}`}
                                 />
-                                <button onClick={() => removeOption(index)}>삭제</button>
+                                <div className="optiondeletebuttonwrap">
+                                    <button className='optiondeletebutton' onClick={() => removeOption(index)}>삭제</button>
+                                </div>
                             </div>
                         ))}
                         </div>
@@ -111,8 +114,16 @@ const SurveyForm = () => {
         setQuestions(updatedQuestions);
     };
 
+    const location = useLocation();
+    const isAdminSurveyDetail = location.pathname.includes('/AdminSurveyDetail');
+
     return (
         <div className="survey-form">
+            <div className="titlewrap">
+                <input className="title" placeholder="설문 조사 제목을 입력하세요"></input>
+                <button className="submitbutton">확인</button>
+                {isAdminSurveyDetail && <button className="deletebutton">삭제</button>}
+            </div>
             <button className='questionadd' onClick={addQuestion}>질문 추가</button>
                 {questions.map((question, index) => (
                     <Question
