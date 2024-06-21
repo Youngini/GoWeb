@@ -21,10 +21,14 @@ public class Vote {
     @JoinColumn(name = "user_id")
     private User user;
 
+
     @ManyToOne
     @JoinColumn(name = "voting_id")
     private Voting voting;
 
     @Column(nullable = false)
-    private LocalDate date;
+    private LocalDate startDate;
+
+    @Column(nullable = false)
+    private LocalDate endDate;
 }
