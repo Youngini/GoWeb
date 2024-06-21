@@ -1,6 +1,5 @@
 package Goweb.FormMaker.controller.user;
 
-import Goweb.FormMaker.DTO.findIdDTO;
 import Goweb.FormMaker.DTO.findPasswordDTO;
 import Goweb.FormMaker.service.user.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,8 +15,21 @@ import org.springframework.web.bind.annotation.RestController;
 public class UserController {
 
     private UserService userService;
-    @PostMapping("find/id")
+
+    @PostMapping("find/password")
     public ResponseEntity<String> findPassword(findPasswordDTO findPasswordDTO){
+        String password = userService.findPassword(findPasswordDTO);
+        return new ResponseEntity<>(password,HttpStatus.OK);
+    }
+
+    @PostMapping("login")
+    public ResponseEntity<String> login(findPasswordDTO findPasswordDTO){
+        String password = userService.findPassword(findPasswordDTO);
+        return new ResponseEntity<>(password,HttpStatus.OK);
+    }
+
+    @PostMapping("join")
+    public ResponseEntity<String> joinUser(findPasswordDTO findPasswordDTO){
         String password = userService.findPassword(findPasswordDTO);
         return new ResponseEntity<>(password,HttpStatus.OK);
     }
