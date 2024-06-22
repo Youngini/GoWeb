@@ -47,6 +47,29 @@
     margin-top : 20px;
 }
 
+.dateWrap {
+    width : 80%;
+    height : 50px;
+    border : 1px solid #fff;
+    border-radius : 5px;
+    margin : 0 auto;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    margin-top : 20px;
+    display : flex;
+    justify-content: center;
+    align-items: center;
+}
+
+span {
+    margin-left : 10px;
+}
+
+.startDate, .endDate {
+    margin-left : 10px;
+}
+
 .footer {
     width : 80%;
     /* border: 1px solid black; */
