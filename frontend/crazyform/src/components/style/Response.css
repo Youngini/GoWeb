@@ -1,0 +1,46 @@
+.wrap{
+    display: flex;
+    flex-direction: column;
+    margin-left: 5vw;
+}
+
+.countnumberWrap{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2vh;
+    width: 60vw;
+    height: 12vh;
+    border: 1px solid black;
+    border-radius: 1vh;
+}
+
+.countnumber{
+    margin-left: 2vw;
+    font-weight: bold;
+    font-size: 3vh;
+}
+
+.downloadbuttonWrap{
+    margin-top: 2vw;
+    margin-left: 43vw;
+}
+
+.downloadbutton{
+    width: 5vw;
+    height: 5vh;
+    background-color: white;
+    border : 1px solid green;
+    border-radius: 1vh;
+    font-weight: bold;
+    transition: .4s;
+}
+
+.downloadbutton:hover{
+    width: 5vw;
+    height: 5vh;
+    background-color: green;
+    border : 1px solid green;
+    border-radius: 1vh;
+    font-weight: bold;
+    color: white;
+}

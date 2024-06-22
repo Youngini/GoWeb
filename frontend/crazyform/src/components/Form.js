@@ -7,9 +7,8 @@ export default function Form({formId, title, hashtag}) {
   return (
     <div className="formWrapper">
       <div className="formTitle">{title}</div>
-      <div>{hashtag}</div>
-      <button className="editSurvey" onClick={() => navigate(`/AdminSurveyDetail/${formId}`)}>설문조사 수정</button>
-      <button className="showResponse">응답 보기</button>
+      <div className='hashtag'># {hashtag}</div>
+      <button className="detail" onClick={() => navigate(`/AdminSurveyDetail/${formId}`)}>상세 보기</button>
       <button className="activeForm">폼 활성화</button>
     </div>
   );

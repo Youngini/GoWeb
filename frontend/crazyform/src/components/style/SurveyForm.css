@@ -16,6 +16,46 @@
     border-radius: 0.5vh;
 }
 
+.addCategory{
+    margin-top: 1vh;
+    width: 60vw;
+    height: 3vh;
+    border-radius: 0.5vh;
+    border : 0.5px solid grey;
+}
+
+.description{
+    margin-top: 1vh;
+    width: 60vw;
+    height: 8vh;
+    border-radius: 1vh;
+}
+
+.dateWrap{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vh;
+}
+
+.dateinput{
+    margin-left: 1vw;
+}
+
+.enddate{
+    margin-left: 5vw;
+}
+
+.questionTitleWrap{
+    margin-left: 2vw;
+    margin-top: 2vh;
+}
+
+.questionTitle{
+    width: 48vw;
+    height: 5vh;
+    border-radius: 0.5vh;
+}
+
 .submitbutton{
     margin-left: 1vw;
     width: 4vw;
@@ -203,6 +243,7 @@
 }
 
 .deleteq{
+    margin-top: 1vh;
     width: 8vw;
     height: 4vh;
     border: 3px solid grey;

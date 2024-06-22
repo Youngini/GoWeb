@@ -1,17 +1,25 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Form from './Form';
 import './style/FormList.css';
 import { useNavigate } from 'react-router-dom';
+import { ApiAddress } from '../constants';
 
 export default function FormList({ activeCategory }) {
+  const [forms, setForms] = useState([]);
 
-  const forms = [
-    { id : 1, title: '2024 MT 수요조사', hashtag: '각종 MT' },
-    { id : 2, title: '산사랑 MT 수요조사', hashtag: '각종 MT' },
-    { id : 3, title: '산사랑 멘토링 신청', hashtag: '멘토링' },
-    { id : 4, title: '멘토링 신청', hashtag: '멘토링' },
-    { id : 5, title: '야식마차 신청', hashtag: '야식마차' }
-  ];
+  useEffect(() => {
+    async function fetchForms() {
+      try {
+        const response = await fetch(`${ApiAddress}/surveys`);
+        const data = await response.json();
+        setForms(data);
+      } catch (error) {
+        console.error('Error fetching forms:', error);
+      }
+    }
+
+    fetchForms();
+  }, []);
 
   const filteredForms = activeCategory === '전체' || !activeCategory
     ? forms
@@ -27,7 +35,7 @@ export default function FormList({ activeCategory }) {
           <button 
             className='addSurveybutton'
             onClick={() => navigate('/AdminSurveyReg')}
-            >설문조사 추가하기</button>
+          >설문조사 추가하기</button>
         </div>
         <div className='listCount'>{filteredForms.length}개의 항목</div>
       </div>
