@@ -1,5 +1,6 @@
 package Goweb.FormMaker.exception;
 
+import Goweb.FormMaker.exception.error.ErrorCode;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

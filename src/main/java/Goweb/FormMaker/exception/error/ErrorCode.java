@@ -1,4 +1,4 @@
-package Goweb.FormMaker.exception;
+package Goweb.FormMaker.exception.error;
 
 import org.springframework.http.HttpStatus;
 

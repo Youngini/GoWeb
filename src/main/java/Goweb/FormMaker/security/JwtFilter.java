@@ -2,7 +2,7 @@ package Goweb.FormMaker.security;
 
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.AppException;
-import Goweb.FormMaker.exception.AuthErrorCode;
+import Goweb.FormMaker.exception.error.AuthErrorCode;
 import Goweb.FormMaker.service.user.UserService;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
@@ -40,7 +40,7 @@ public class JwtFilter extends OncePerRequestFilter { // 요청당 한 번 수�
 
             // 요청 URI를 확인하여 특정 경로의 요청은 필터링하지 않음
             String requestURI = request.getRequestURI();
-            if (requestURI.startsWith("/auth/") ||
+            if (requestURI.startsWith("/auths/") ||
                     requestURI.startsWith("/image/") ||
                     requestURI.startsWith("/swagger-ui") || // Swagger UI
                     requestURI.startsWith("/v3/api-docs/swagger-config") ||     // Swagger API docs

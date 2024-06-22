@@ -4,7 +4,7 @@ package Goweb.FormMaker.security;
 import Goweb.FormMaker.DTO.LoginSuccessDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.AppException;
-import Goweb.FormMaker.exception.AuthErrorCode;
+import Goweb.FormMaker.exception.error.AuthErrorCode;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.ExpiredJwtException;
 import io.jsonwebtoken.Jwts;
