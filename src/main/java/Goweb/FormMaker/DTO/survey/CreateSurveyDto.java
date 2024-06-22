@@ -1,6 +1,5 @@
 package Goweb.FormMaker.DTO.survey;
 
-import Goweb.FormMaker.DTO.question.CreateQuestionDto;
 import lombok.Getter;
 import lombok.Setter;
 
