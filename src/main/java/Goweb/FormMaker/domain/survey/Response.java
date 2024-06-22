@@ -1,9 +1,13 @@
 package Goweb.FormMaker.domain.survey;
 
+import Goweb.FormMaker.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
+import java.util.Set;
 
 @Entity
 @NoArgsConstructor
@@ -16,6 +20,10 @@ public class Response {
     private Long id;
 
     @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
+
+    @ManyToOne
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
@@ -25,4 +33,7 @@ public class Response {
 
     @Column(nullable = false)
     private String answer;
+
+    @OneToMany(mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ResponseOption> responseOptions;
 }
