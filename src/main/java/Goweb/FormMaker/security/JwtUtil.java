@@ -1,7 +1,7 @@
 package Goweb.FormMaker.security;
 
 
-import Goweb.FormMaker.DTO.LoginSuccessDTO;
+import Goweb.FormMaker.DTO.auth.LoginSuccessDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.AppException;
 import Goweb.FormMaker.exception.error.AuthErrorCode;

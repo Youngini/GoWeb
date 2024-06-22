@@ -1,6 +1,6 @@
 package Goweb.FormMaker.domain.user;
 
-import Goweb.FormMaker.DTO.JoinRequestDTO;
+import Goweb.FormMaker.DTO.auth.JoinRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;

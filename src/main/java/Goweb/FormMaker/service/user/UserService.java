@@ -1,8 +1,8 @@
 package Goweb.FormMaker.service.user;
 
-import Goweb.FormMaker.DTO.JoinRequestDTO;
-import Goweb.FormMaker.DTO.LoginSuccessDTO;
-import Goweb.FormMaker.DTO.findPasswordDTO;
+import Goweb.FormMaker.DTO.auth.JoinRequestDTO;
+import Goweb.FormMaker.DTO.auth.LoginSuccessDTO;
+import Goweb.FormMaker.DTO.auth.findPasswordDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.AppException;
 import Goweb.FormMaker.exception.error.AppErrorCode;
@@ -10,14 +10,10 @@ import Goweb.FormMaker.exception.error.AuthErrorCode;
 import Goweb.FormMaker.repository.user.UserRepository;
 import Goweb.FormMaker.security.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
