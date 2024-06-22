@@ -43,7 +43,7 @@ public class SurveyService {
         List<Question> questions = new ArrayList<>();
         for (CreateQuestionDto createQuestionDto : createSurveyDto.getQuestions()) {
             Question question = new Question();
-            question.setOrder(createQuestionDto.getOrder());
+            question.setNum(createQuestionDto.getOrder());
             question.setContent(createQuestionDto.getContent());
             question.setQuestionType(createQuestionDto.getQuestionType());
             question.setImageUrl(createQuestionDto.getImageUrl());
@@ -53,7 +53,7 @@ public class SurveyService {
             for (CreateOptionDto createOptionDto : createQuestionDto.getOptions()) {
                 Option option = new Option();
                 option.setName(createOptionDto.getName());
-                option.setOrder(createOptionDto.getOrder());
+                option.setNum(createOptionDto.getOrder());
                 option.setImageUrl(createOptionDto.getImageUrl());
                 option.setQuestion(question);
                 options.add(option);

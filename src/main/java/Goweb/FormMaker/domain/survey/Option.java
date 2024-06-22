@@ -11,6 +11,7 @@ import java.util.Set;
 @Getter
 @Setter
 @NoArgsConstructor
+@Table(name = "'option'")
 public class Option {
 
     @Id
@@ -21,7 +22,7 @@ public class Option {
     @Column(nullable = false)
     private String name;
 
-    private Integer order;
+    private Integer num;
 
     @Column
     private String imageUrl;

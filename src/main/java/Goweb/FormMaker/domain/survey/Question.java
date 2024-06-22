@@ -17,7 +17,7 @@ public class Question {
     @Column(name = "question_id")
     private Long id;
 
-    private Integer order;
+    private Integer num;
 
     @Column(nullable = false)
     private String content;
