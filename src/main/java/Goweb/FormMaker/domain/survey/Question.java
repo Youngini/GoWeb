@@ -30,4 +30,8 @@ public class Question {
 
     @Column
     private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "survey_id")
+    private Survey survey;
 }
