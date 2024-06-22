@@ -20,6 +20,4 @@ public class Option {
     @Column
     private String imageUrl;
 
-
-
 }
