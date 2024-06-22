@@ -54,7 +54,7 @@ const AdminTopNavbar = () => {
     const goToHome = () => {
         const isConfirmed = window.confirm('로그아웃하시겠습니까?');
         if (isConfirmed) {
-            navigate('/Home')
+            navigate('/')
         }
     }
 

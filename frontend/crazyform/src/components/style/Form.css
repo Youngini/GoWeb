@@ -15,6 +15,30 @@
     font-size : 30px;
 }
 
+.detail{
+    width : 100px;
+    height : 45px;
+    border : 3px solid #1891B7;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    position: absolute;
+    right : 150px;
+    top : 35px;
+    text-align : center;
+    transition: .4s;
+}
+
+.hashtag{
+    margin-left: 1vw;
+}
+
+.detail:hover{
+    background-color: #1891B7;
+    color : white;
+}
+
 .editSurvey{
     width: 150px;
     height: 45px;
