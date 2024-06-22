@@ -58,12 +58,8 @@ const AdminTopNavbar = () => {
         <div className='navbarFrame'>
             <Logo />
             <div className='navbuttonContainer'>
-                <div style={{
-                    margin : '5vh'
-                }}>
-                    <button className='button' style={{
-                        backgroundColor : surveyButtonBackground
-                    }}
+                <div style={{margin : '5vh'}}>
+                    <button className='button' style={{backgroundColor : surveyButtonBackground}}
                         onClick={goToAdminSurvey}>
                         설문 페이지
                     </button>
