@@ -29,12 +29,6 @@ public class User {
     private String name;
 
     @Column(nullable = false)
-    private String gender;
-
-    @Column(nullable = false)
-    private String phoneNumber;
-
-    @Column(nullable = false)
     private Long studentNumber;
 
     @Column(nullable = false)
@@ -48,10 +42,8 @@ public class User {
                 .name(userJoinRequestDTO.getName())
                 .studentNumber(userJoinRequestDTO.getStudentNumber())
                 .password(encoder.encode(userJoinRequestDTO.getPassword()))
-                .phoneNumber(userJoinRequestDTO.getPhoneNumber())
                 .userType(UserType.STUDENT)
                 .createdAt(LocalDate.now())
-                .gender(userJoinRequestDTO.getGender())
                 .build();
     }
 
