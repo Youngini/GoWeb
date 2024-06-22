@@ -1,0 +1,95 @@
+.voteItemWrapper {
+    width : 80%;
+    height : 20vh;
+    background-color : #fff;
+    margin : 0 auto;
+    margin-top : 20px;
+    border-radius : 15px;
+    padding: 20px; /* 패딩 추가 */
+    height: auto; /* 높이를 자동으로 설정 */
+    box-sizing: border-box; /* 패딩과 테두리를 포함하여 박스 크기 설정 */
+}
+
+.choiceOption {
+    width : 80%;
+    margin : 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    /* border: 1px solid black; */
+}
+
+.typeSingle, 
+.typeMulti {
+    display : flex;
+    flex-direction: row;
+}
+
+.single-span,
+.multi-span {
+    font-size : 20px;
+}
+
+.optionList {
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+    /* border: 3px solid black; */
+}
+
+.optionItem {
+    width : 90%;
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.optionInputWrap {
+    width : 100%;
+    border: 1px solid black;
+    border-radius: 5px;
+    display :flex;
+    flex-direction: row;
+    /* border : 2px solid black; */
+    justify-content: center;
+    margin-top : 10px;
+}
+
+.optionInput {
+    width : 90%;
+    height : 5vh;
+    border : none;
+    /* border : 1px solid black; */
+    border-radius: 5px;
+    font-size : 15px;
+    font-weight : 400;
+    padding-left : 10px;
+}
+
+.optionInput::placeholder {
+    font-size : 15px;
+    font-weight : 400;
+    padding-left : 10px;
+}
+
+.optionDeletebtn {
+    background-color: transparent;
+    border: none;
+    font-size: 20px;
+    font-weight : 600;
+    color : #a71313;
+}
+.addOptionBtn {
+    width : 90%;
+    height : 5vh;
+    border-radius: 5px;
+    margin : 0 auto;
+    display: flex;
+    font-size : 50px;
+    font-weight : 600;
+    background-color: transparent;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid black;
+    margin-top : 10px;
+}

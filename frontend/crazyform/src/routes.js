@@ -3,7 +3,10 @@
 import AdminSurveyDetail from "./pages/AdminSurveyDetailPage";
 import AdminSurveyPage from "./pages/AdminSurveyPage";
 import AdminSurveyReg from "./pages/AdminSurveyRegPage";
+import AdminVotePage from "./pages/AdminVotePage";
+import AdminVoteRegPage from "./pages/AdminVoteRegPage";
 import HomePage from "./pages/HomePage";
+
 
 const routes = [
   {
@@ -21,6 +24,14 @@ const routes = [
   {
     path : "AdminSurveyReg",
     component : AdminSurveyReg
+  },
+  {
+    path : "AdminVote",
+    component : AdminVotePage
+  },
+  {
+    path : "AdminVoteReg",
+    component : AdminVoteRegPage
   }
 ];
 

@@ -18,6 +18,10 @@ const AdminTopNavbar = () => {
         navigate('/AdminSurvey')
     }
 
+    const goToAdminVote = () => {
+        navigate('/AdminVote')
+    }
+
     const openSignUpModal = () => {
         setIsSignUpModal(true)
     }
@@ -71,7 +75,7 @@ const AdminTopNavbar = () => {
                 }}>
                     <button className='button' style={{
                         backgroundColor : voteButtonBackground,
-                    }}>
+                    }} onClick={goToAdminVote}>
                         투표 페이지
                     </button>
                 </div>
@@ -90,7 +94,7 @@ const AdminTopNavbar = () => {
                             }}
                             onClick={openSignUpModal}>관리자 추가</button>
                         {isSignUpModal && (
-                            <div style={{ 
+                            <div style={{
                                 position: 'fixed', 
                                 top: '50%', 
                                 left: '50%', 
