@@ -1,4 +1,4 @@
-package Goweb.FormMaker.DTO;
+package Goweb.FormMaker.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

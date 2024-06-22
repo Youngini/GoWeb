@@ -1,6 +1,6 @@
 package Goweb.FormMaker.controller.survey;
 
-import Goweb.FormMaker.DTO.survey.CreateResponseDto;
+import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.Response;
 import Goweb.FormMaker.service.survey.ResponseService;
 import io.swagger.v3.oas.annotations.Operation;

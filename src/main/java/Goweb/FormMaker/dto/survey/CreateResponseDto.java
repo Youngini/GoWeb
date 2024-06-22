@@ -1,7 +1,5 @@
-package Goweb.FormMaker.DTO.survey;
+package Goweb.FormMaker.dto.survey;
 
-import Goweb.FormMaker.domain.survey.ResponseOption;
-import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 

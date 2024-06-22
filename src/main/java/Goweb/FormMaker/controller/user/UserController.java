@@ -1,6 +1,6 @@
 package Goweb.FormMaker.controller.user;
 
-import Goweb.FormMaker.DTO.findPasswordDTO;
+import Goweb.FormMaker.dto.findPasswordDTO;
 import Goweb.FormMaker.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

@@ -1,10 +1,9 @@
 package Goweb.FormMaker.service.user;
 
-import Goweb.FormMaker.DTO.findPasswordDTO;
+import Goweb.FormMaker.dto.findPasswordDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.repository.user.UserRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 

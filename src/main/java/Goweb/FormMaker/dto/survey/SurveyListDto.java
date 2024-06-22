@@ -1,4 +1,4 @@
-package Goweb.FormMaker.DTO.survey;
+package Goweb.FormMaker.dto.survey;
 
 import lombok.Getter;
 import lombok.Setter;

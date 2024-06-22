@@ -1,9 +1,9 @@
 package Goweb.FormMaker.service.survey;
 
-import Goweb.FormMaker.DTO.survey.CreateOptionDto;
-import Goweb.FormMaker.DTO.survey.CreateQuestionDto;
-import Goweb.FormMaker.DTO.survey.CreateSurveyDto;
-import Goweb.FormMaker.DTO.survey.SurveyListDto;
+import Goweb.FormMaker.dto.survey.CreateOptionDto;
+import Goweb.FormMaker.dto.survey.CreateQuestionDto;
+import Goweb.FormMaker.dto.survey.CreateSurveyDto;
+import Goweb.FormMaker.dto.survey.SurveyListDto;
 import Goweb.FormMaker.domain.survey.Option;
 import Goweb.FormMaker.domain.survey.Question;
 import Goweb.FormMaker.domain.survey.Survey;

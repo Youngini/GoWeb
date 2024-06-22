@@ -1,7 +1,7 @@
 package Goweb.FormMaker.service.survey;
 
-import Goweb.FormMaker.DTO.survey.CreateResponseDto;
-import Goweb.FormMaker.DTO.survey.CreateResponseOptionDto;
+import Goweb.FormMaker.dto.survey.CreateResponseDto;
+import Goweb.FormMaker.dto.survey.CreateResponseOptionDto;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.ResponseNotFoundException;
