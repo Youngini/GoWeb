@@ -23,7 +23,7 @@ import java.util.List;
 @Slf4j
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("excels/")
+@RequestMapping("/excels")
 public class ExcelController {
 
     private final ExcelService excelService;

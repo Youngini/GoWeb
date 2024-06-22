@@ -30,7 +30,7 @@ public class AuthenticationConfig {
                 .and()
                 .authorizeHttpRequests()
                 .requestMatchers("/admins/**").hasRole("ADMIN")
-                .requestMatchers("/auths/**", "/image/**", "/v3/**", "/swagger-ui/**", "/v3/api-docs").permitAll()
+                .requestMatchers("/auths/**", "/image/**", "/v3/**", "/swagger-ui/**", "/v3/api-docs", "/surveys/**","/responses/**", "/questions/**", "/excels/**").permitAll()
                 .requestMatchers("/**").authenticated()
                 .and()
                 .addFilterBefore(jwtFilter, UsernamePasswordAuthenticationFilter.class)

@@ -14,7 +14,7 @@ import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("admins/votes")
+@RequestMapping("/admins/votes")
 public class AdminVoteController {
 
     private final VoteService voteService;
