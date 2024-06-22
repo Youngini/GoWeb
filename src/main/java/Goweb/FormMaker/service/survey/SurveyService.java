@@ -86,9 +86,44 @@ public class SurveyService {
     }
 
     @Transactional
-    public Survey getSurvey(Long surveyId) {
-        return surveyRepository.findById(surveyId)
+    public LoadSurveyDto getSurvey(Long surveyId) {
+        Survey survey = surveyRepository.findById(surveyId)
                 .orElseThrow(() -> new SurveyNotFoundException(surveyId));
+
+        LoadSurveyDto SurveyDto = new LoadSurveyDto();
+
+        List<LoadQuestionDto> QuestionDtos = new ArrayList<>();
+
+        for(Question question : survey.getQuestions()) {
+            LoadQuestionDto dto = new LoadQuestionDto();
+            dto.setContent(question.getContent());
+            dto.setNum(question.getNum());
+            dto.setQuestionType(question.getQuestionType());
+            dto.setImageUrl(question.getImageUrl());
+
+            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            for(Option option : question.getOptions()) {
+                LoadOptionDto dto2 = new LoadOptionDto();
+                dto2.setName(option.getName());
+                dto2.setNum(option.getNum());
+                dto2.setImageUrl(option.getImageUrl());
+
+                loadOptionDtos.add(dto2);
+            }
+            dto.setOptions(loadOptionDtos);
+
+            QuestionDtos.add(dto);
+
+        }
+
+        SurveyDto.setTitle(survey.getTitle());
+        SurveyDto.setStartDate(survey.getStartDate());
+        SurveyDto.setDueDate(survey.getDueDate());
+        SurveyDto.setActivation(survey.isActivation());
+        SurveyDto.setHashtag(survey.getHashtag());
+        SurveyDto.setQuestions(QuestionDtos);
+
+        return SurveyDto;
     }
 
 
