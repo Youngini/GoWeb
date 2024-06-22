@@ -1,7 +1,7 @@
 package Goweb.FormMaker.service.vote;
 
-import Goweb.FormMaker.DTO.vote.CreateVoteDTO;
-import Goweb.FormMaker.DTO.vote.VoteResultDTO;
+import Goweb.FormMaker.dto.vote.CreateVoteDTO;
+import Goweb.FormMaker.dto.vote.VoteResultDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.domain.vote.Candidate;
 import Goweb.FormMaker.domain.vote.Vote;

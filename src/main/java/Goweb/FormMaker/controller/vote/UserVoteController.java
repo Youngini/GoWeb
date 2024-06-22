@@ -1,6 +1,6 @@
 package Goweb.FormMaker.controller.vote;
 
-import Goweb.FormMaker.DTO.vote.VoteResultDTO;
+import Goweb.FormMaker.dto.vote.VoteResultDTO;
 import Goweb.FormMaker.domain.vote.Vote;
 import Goweb.FormMaker.service.vote.VoteService;
 import org.springframework.beans.factory.annotation.Autowired;

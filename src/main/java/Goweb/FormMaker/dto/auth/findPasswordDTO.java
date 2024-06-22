@@ -1,4 +1,4 @@
-package Goweb.FormMaker.DTO.auth;
+package Goweb.FormMaker.dto.auth;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

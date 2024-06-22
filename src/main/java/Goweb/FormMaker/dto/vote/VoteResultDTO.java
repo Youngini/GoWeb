@@ -1,10 +1,8 @@
-package Goweb.FormMaker.DTO.vote;
+package Goweb.FormMaker.dto.vote;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
-
-import java.util.List;
 
 @Getter @Setter
 @AllArgsConstructor

@@ -1,15 +1,14 @@
 package Goweb.FormMaker.service.user;
 
 
-import Goweb.FormMaker.DTO.auth.JoinRequestDTO;
-import Goweb.FormMaker.DTO.auth.LoginSuccessDTO;
-import Goweb.FormMaker.DTO.auth.findPasswordDTO;
+import Goweb.FormMaker.dto.auth.JoinRequestDTO;
+import Goweb.FormMaker.dto.auth.LoginSuccessDTO;
+import Goweb.FormMaker.dto.auth.findPasswordDTO;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.exception.AppException;
 import Goweb.FormMaker.exception.error.AppErrorCode;
 import Goweb.FormMaker.exception.error.AuthErrorCode;
 import Goweb.FormMaker.repository.user.UserRepository;
-import lombok.AllArgsConstructor;
 import Goweb.FormMaker.security.JwtUtil;
 import jakarta.persistence.EntityNotFoundException;
 import lombok.RequiredArgsConstructor;

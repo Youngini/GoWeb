@@ -1,7 +1,7 @@
 package Goweb.FormMaker.controller.vote;
 
-import Goweb.FormMaker.DTO.vote.CreateVoteDTO;
-import Goweb.FormMaker.DTO.vote.VoteResultDTO;
+import Goweb.FormMaker.dto.vote.CreateVoteDTO;
+import Goweb.FormMaker.dto.vote.VoteResultDTO;
 import Goweb.FormMaker.domain.vote.Vote;
 import Goweb.FormMaker.service.vote.VoteService;
 import jakarta.validation.Valid;

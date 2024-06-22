@@ -9,7 +9,6 @@ import Goweb.FormMaker.repository.survey.QuestionRepository;
 import Goweb.FormMaker.repository.survey.SurveyParticipationRepository;
 import Goweb.FormMaker.repository.survey.SurveyRepository;
 import Goweb.FormMaker.repository.user.UserRepository;
-import Goweb.FormMaker.service.user.UserService;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;

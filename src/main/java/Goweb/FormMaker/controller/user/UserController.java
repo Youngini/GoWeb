@@ -1,9 +1,9 @@
 package Goweb.FormMaker.controller.user;
 
-import Goweb.FormMaker.DTO.auth.JoinRequestDTO;
-import Goweb.FormMaker.DTO.auth.LoginRequestDTO;
-import Goweb.FormMaker.DTO.auth.LoginSuccessDTO;
-import Goweb.FormMaker.DTO.auth.findPasswordDTO;
+import Goweb.FormMaker.dto.auth.JoinRequestDTO;
+import Goweb.FormMaker.dto.auth.LoginRequestDTO;
+import Goweb.FormMaker.dto.auth.LoginSuccessDTO;
+import Goweb.FormMaker.dto.auth.findPasswordDTO;
 import Goweb.FormMaker.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

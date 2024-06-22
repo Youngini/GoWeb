@@ -1,4 +1,4 @@
-package Goweb.FormMaker.DTO.vote;
+package Goweb.FormMaker.dto.vote;
 
 import jakarta.validation.constraints.NotEmpty;
 import lombok.AllArgsConstructor;
