@@ -4,11 +4,12 @@ import Goweb.FormMaker.domain.user.User;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class Vote {
 
@@ -21,6 +22,8 @@ public class Vote {
     @JoinColumn(name = "user_id")
     private User user;
 
+    @Column(nullable = false)
+    private String description;
 
     @ManyToOne
     @JoinColumn(name = "voting_id")
