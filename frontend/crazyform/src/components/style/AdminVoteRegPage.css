@@ -1,0 +1,88 @@
+.backGround {
+    height : 100vh;
+    background-color: #EAA0A0;
+}
+
+.voteRegWrapper{
+    width : 50vw;
+    border-radius: 10px;
+    border : 3px solid #fff;
+    margin : 0 auto;
+}
+
+.voteRegWrapper .voteRegTitle {
+    font-size : 30px;
+    font-weight : 600;
+    text-align : center;
+}
+
+.titleInputWrapper {
+    margin : 0 auto;
+    width : 100%;
+    /* border: 1px solid #fff; */
+    display : flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.vTitle {
+    width : 80%;
+    height : 50px;
+    border : 1px solid #fff;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    margin-top : 20px;
+}
+
+.vSubtitle {
+    width : 80%;
+    height : 50px;
+    border : 1px solid #fff;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    margin-top : 20px;
+}
+
+.footer {
+    width : 80%;
+    /* border: 1px solid black; */
+    margin : 0 auto;
+    display : flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+.cancel,
+.register {
+    width : 50%;
+    height : 50px;
+    border : 1px solid #fff;
+    border-radius : 10px;
+    font-size : 20px;
+    font-weight : 600;
+    background-color: white;
+    margin-top : 15px;
+    transition: .4s;
+}
+
+.cancel:hover {
+    background-color: rgb(199, 207, 214);
+    border: 1px solid rgb(199, 207, 214);
+}
+
+.register {
+    margin-left : 8px;
+    background-color: #eff306;
+    border : 1px solid #eff306;
+    transition: .4s;
+}
+
+.register:hover{
+    background-color: #b8bb0c;
+    border : 1px solid #b8bb0c;
+}

@@ -114,6 +114,8 @@ const SurveyForm = () => {
         setQuestions(updatedQuestions);
     };
 
+    
+
     const location = useLocation();
     const isAdminSurveyDetail = location.pathname.includes('/AdminSurveyDetail');
 
