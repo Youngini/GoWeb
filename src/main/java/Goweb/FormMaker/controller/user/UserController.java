@@ -1,6 +1,5 @@
 package Goweb.FormMaker.controller.user;
 
-import Goweb.FormMaker.dto.findPasswordDTO;
 import Goweb.FormMaker.DTO.auth.JoinRequestDTO;
 import Goweb.FormMaker.DTO.auth.LoginRequestDTO;
 import Goweb.FormMaker.DTO.auth.LoginSuccessDTO;
