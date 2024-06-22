@@ -1,8 +1,11 @@
 package Goweb.FormMaker.domain.user;
 
+import Goweb.FormMaker.domain.survey.SurveyParticipation;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Entity
 @Getter
@@ -25,4 +28,7 @@ public class User {
 
     @Enumerated(EnumType.STRING)
     private UserType userType;
+
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<SurveyParticipation> surveyParticipations;
 }
