@@ -3,24 +3,29 @@ package Goweb.FormMaker.domain.vote;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
-@Getter
+@Getter @Setter
 @NoArgsConstructor
-public class Voting {
+public class Candidate {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "voting_id")
+    @Column(name = "candidate_id")
     private Long id;
 
     @Column(nullable = false)
     private String name;
 
     @Column
+    private int count;
+
+    @Column
     private String imageUrl;
 
-    /*@Column(nullable = false)
-    private List<VotingOption> VotingOptions;*/
-
+    @ManyToOne
+    @JoinColumn(name = "vote_id")
+    private Vote vote;
 }
+
