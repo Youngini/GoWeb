@@ -8,6 +8,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/responses")
 public class ResponseController {
@@ -24,11 +26,18 @@ public class ResponseController {
         return ResponseEntity.status(HttpStatus.CREATED).body(savedResponse);
     }
 
-    @GetMapping("/{responseId}")
+    @GetMapping("/user/{responseId}")
     @Operation(summary = "특정 사용자 응답 가져오기")
     public ResponseEntity<Response> getResponse(@PathVariable Long responseId) {
-        Response response = responseService.getResponse(responseId);
+        Response response = responseService.getUserResponse(responseId);
         return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/survey/{surveyId}")
+    @Operation(summary = "특정 설문조사의 모든 응답 가져오기")
+    public ResponseEntity<List<Response>> getSurveyResponse(@PathVariable Long surveyId) {
+        List<Response> responses = responseService.getSurveyResponse(surveyId);
+        return ResponseEntity.ok(responses);
     }
 
     @PutMapping("/{responseId}")

@@ -14,6 +14,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -72,9 +73,14 @@ public class ResponseService {
     }
 
     @Transactional
-    public Response getResponse(Long responseId) {
+    public Response getUserResponse(Long responseId) {
         return responseRepository.findById(responseId)
                 .orElseThrow(() -> new ResponseNotFoundException(responseId));
+    }
+
+    @Transactional
+    public List<Response> getSurveyResponse(Long surveyId) {
+        return responseRepository.findBySurveyId(surveyId);
     }
 
     @Transactional
