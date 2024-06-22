@@ -27,4 +27,10 @@ public class SurveyParticipation {
 
     private LocalDate subDate;
 
+    @PrePersist
+    @PreUpdate
+    public void updateSubDate() {
+        this.subDate = LocalDate.now();
+    }
+
 }
