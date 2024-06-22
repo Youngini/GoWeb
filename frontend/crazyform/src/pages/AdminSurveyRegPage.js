@@ -4,26 +4,26 @@ import '../components/style/AdminSurveyRegPage.css'
 import SurveyForm from "../components/SurveyForm"
 
 const AdminSurveyReg = () => {
-    const [isform, setIsform] = useState(true)
+
     return(
         <div>
             <AdminTopNavbar />
             <div className="surveydetailpageContent">
                 <div className="buttonContent">
-                    <div className={`${isform ? 'buttonWrap-active' : 'buttonWrap'}`}
-                        onClick={() => setIsform(true)}>
-                        질문
+                    <div className={'buttonWrap'}>
+                        김영인
                     </div>
-                    <div className={`${isform ? 'buttonWrap' : 'buttonWrap-active'}`}
-                        onClick={() => setIsform(false)}>
-                        응답
+                    <div className={'buttonWrap'}>
+                        김현수 
+                    </div>
+                    <div className={'buttonWrap'}>
+                        윤진노
+                    </div>
+                    <div className={'buttonWrap'}>
+                        정지원
                     </div>
                 </div>
-                {isform ? (
                     <SurveyForm />
-                ) : (
-                    <div></div>
-                )}
             </div>
         </div>
     )
