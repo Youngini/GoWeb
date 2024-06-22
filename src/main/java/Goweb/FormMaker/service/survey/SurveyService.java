@@ -7,6 +7,7 @@ import Goweb.FormMaker.DTO.survey.SurveyListDto;
 import Goweb.FormMaker.domain.survey.Option;
 import Goweb.FormMaker.domain.survey.Question;
 import Goweb.FormMaker.domain.survey.Survey;
+import Goweb.FormMaker.exception.SurveyNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
 import Goweb.FormMaker.repository.survey.SurveyRepository;
@@ -80,6 +81,12 @@ public class SurveyService {
             surveyListDtos.add(surveyListDto);
         }
         return surveyListDtos;
+    }
+
+    @Transactional
+    public Survey getSurvey(Long surveyId) {
+        return surveyRepository.findById(surveyId)
+                .orElseThrow(() -> new SurveyNotFoundException(surveyId));
     }
 
 

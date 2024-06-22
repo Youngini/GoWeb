@@ -36,8 +36,15 @@ public class SurveyController {
         return new ResponseEntity<>(surveyListDtos, HttpStatus.OK);
     }
 
+    @GetMapping("/{surveyId}")
+    @Operation(summary = "특정 설문조사 내용 불러오기")
+    public ResponseEntity<Survey> getSurvey(@PathVariable Long surveyId) {
+        Survey survey = surveyService.getSurvey(surveyId);
+        return ResponseEntity.ok(survey);
+    }
+
     @PutMapping("/{surveyId}/activate")
-    @Operation(summary = "설문조사를 활성화")
+    @Operation(summary = "특정 설문조사를 활성화")
     public ResponseEntity<Void> activateSurvey(@PathVariable Long surveyId) {
         surveyService.activateSurvey(surveyId);
         return new ResponseEntity<>(HttpStatus.OK);
