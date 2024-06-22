@@ -17,7 +17,13 @@ public class Option {
     @Column(nullable = false)
     private String name;
 
+    private Integer order;
+
     @Column
     private String imageUrl;
+
+    @ManyToOne
+    @JoinColumn(name = "question_id")
+    private Question question;
 
 }

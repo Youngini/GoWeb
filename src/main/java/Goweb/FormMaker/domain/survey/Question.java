@@ -5,6 +5,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.List;
+
 @Entity
 @NoArgsConstructor
 @Getter @Setter
@@ -15,14 +17,16 @@ public class Question {
     @Column(name = "question_id")
     private Long id;
 
+    private Integer order;
+
     @Column(nullable = false)
     private String content;
 
     @Enumerated(EnumType.STRING)
     private QuestionType questionType;
 
-    @Column(nullable = false)
-    private String choice;
+    @OneToMany(mappedBy = "question", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Option> options;
 
     @Column
     private String imageUrl;
