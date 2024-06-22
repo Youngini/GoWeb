@@ -5,6 +5,8 @@ import '../style/VoteList.css';
 
 export default function VoteList() {
 
+  // useEffect 로 voteForms 배열 바뀌면 re-rendering
+  // API 주소에서 voteForms 객체 리스트 가져오기
   const voteForms = [
     { id : 1, title: '2024 회장 선거'},
     { id : 2, title: '동아리 가입 투표'},

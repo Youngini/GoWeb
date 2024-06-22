@@ -1,12 +1,15 @@
 import React, { useState } from "react";
-import { useLocation } from 'react-router-dom';
+import { useLocation } from "react-router-dom";
 import "../components/style/AdminVoteRegPage.css";
 import "../components/VoteComponents/VoteQuestion";
 import VoteQuestion from "../components/VoteComponents/VoteQuestion";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 export default function AdminVoteRegPage() {
   const [questions, setQuestions] = useState([{}]);
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
   const navigate = useNavigate();
   const addQuestion = () => {
     setQuestions([...questions, { text: "", type: "", options: [] }]);
@@ -24,11 +27,19 @@ export default function AdminVoteRegPage() {
     setQuestions(updatedQuestions);
   };
 
+  const handleStartDate = (e) => {
+    setStartDate(e.target.value);
+  };
+
+  const handleEndDate = (e) => {
+    setEndDate(e.target.value);
+  };
+
   const location = useLocation();
   const isAdminVoteDetail = location.pathname.includes("/AdminVoteDetail");
 
   const handleButtonClick = () => {
-    navigate('/AdminVote');
+    navigate("/AdminVote");
   };
   return (
     <div className="backGround">
@@ -54,13 +65,28 @@ export default function AdminVoteRegPage() {
             />
           ))}
         </div>
+        <div className="dateWrap">
+          <span>시작 날짜</span>
+          <input
+            className="startDate"
+            type="date"
+            value={startDate}
+            onChange={handleStartDate}
+          />
+          <span>마지막 날짜</span>
+          <input
+            className="endDate"
+            type="date"
+            value={endDate}
+            onChange={handleEndDate}
+          />
+        </div>
+        
         <div className="footer">
-            <button className="cancel" onClick={handleButtonClick}>
+          <button className="cancel" onClick={handleButtonClick}>
             취소
-            </button>
-            <button className="register">
-            등록
-            </button>
+          </button>
+          <button className="register">등록</button>
         </div>
       </div>
     </div>
