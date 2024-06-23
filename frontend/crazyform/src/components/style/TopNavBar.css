@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
+.navbarFrame{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    display : flex;
+    margin-top : 20px;
+    /* border-bottom : 2px solid #EAA0A0; */
+    /* border: 1px solid black; */
+}
+
+.navbuttonContainer{
+    /* border : 1px solid black; */
+    font-family: 'Ownglyph_ryuttung-Rg';
+    width : 70vw;
+    display: flex;
+    justify-Content: center;
+    align-Items: center;
+    border-Bottom : 2px solid #EAA0A0
+}
+
+.button{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    width : 20vw;
+    height : 8vh;
+    border-Radius : 2vh;
+    border: 3px solid #EAA0A0;
+    font-Size : 4vh;
+    font-weight : 500;
+}
+
+.button:hover{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    font-weight: 700;
+}
+
+.addAdmin,
+.logout{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    width : 140px;
+    height : 40px;
+    border: 3px solid #B28D0A;
+    font-size : 20px;
+    font-weight : bold;
+    border-radius : 30px;
+    background-color: white;
+    transition: .5s;
+    margin-left : 50px;
+    margin-right : -100px;
+}
+
+.addAdmin:hover,
+.logout:hover{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    background-color: #B28D0A;
+    color : white;
+}
+
+.signupmodalbutton{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    background-color: white;
+    color : black;
+    border: 0.2vh solid black;
+    border-radius: 1vh;
+    transition: .4s;
+}
+
+.signupmodalbutton:hover{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    background-color: grey;
+    color : white
+}

@@ -1,5 +1,6 @@
 // path 는 URL, component는 해당 URL에 나타낼 페이지 라고 인식하면 됨
 
+import { computeHeadingLevel } from "@testing-library/react";
 import AdminSurveyDetail from "./pages/AdminSurveyDetailPage";
 import AdminSurveyPage from "./pages/AdminSurveyPage";
 import AdminSurveyReg from "./pages/AdminSurveyRegPage";
@@ -7,8 +8,10 @@ import AdminVotePage from "./pages/AdminVotePage";
 import AdminVoteRegPage from "./pages/AdminVoteRegPage";
 import HomePage from "./pages/HomePage";
 import UserReg from "./pages/UserRegPage";
+import UserSurvey from "./pages/UserSurveyPage";
 
 const token = localStorage.getItem('token');
+const usertoken = localStorage.getItem('usertoken')
 
 const routes = [
   {
@@ -28,7 +31,11 @@ const routes = [
     component : AdminSurveyPage
   },
   {
-    path : "AdminSurveyDetail/:id",
+    path : "AdminSurveyDetail/:number/:id",
+    component : AdminSurveyDetail
+  },
+  {
+    path : `AdminSurveyDetail/${token}/:id`,
     component : AdminSurveyDetail
   },
   {
@@ -46,6 +53,14 @@ const routes = [
   {
     path : "AdminVoteReg",
     component : AdminVoteRegPage
+  },
+  {
+    path: `UserSurvey/:number/:id`,
+    component : UserSurvey
+  },
+  {
+    path: `UserSurvey/${usertoken}/:id`,
+    component : UserSurvey
   }
 ];
 

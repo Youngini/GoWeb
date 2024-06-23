@@ -3,8 +3,16 @@ import AdminTopNavbar from "../components/AdminTopNavBar";
 import '../components/style/AdminSurveyDetailPage.css';
 import SurveyForm from "../components/SurveyForm";
 import Response from "../components/Response";
+import { useNavigate, useParams } from 'react-router-dom';
+import { useEffect } from "react";
 
 const AdminSurveyDetail = () => {
+
+    const navigate = useNavigate();
+    const token = localStorage.getItem('token');
+    const id = localStorage.getItem('surveyid')
+  
+    
     const [isform, setIsform] = useState(true);
 
     return (

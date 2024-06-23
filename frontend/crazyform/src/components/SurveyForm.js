@@ -192,11 +192,16 @@ const SurveyForm = ({token}) => {
 
     useEffect(() => {
         if (isAdminSurveyDetail && surveyId) {
-            const fetchSurvey = async (surveyId) => {
+            const fetchSurvey = async () => {
                 try {
-                    const response = await fetch(`${ApiAddress}/surveys/${surveyId}`);
+                    const response = await fetch(`${ApiAddress}/surveys/${surveyId}`, {
+                        headers: {
+                          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+                      },
+                      });
                     if (response.ok) {
                         const data = await response.json();
+                        console.log(data)
                         setTitle(data.title);
                         setDescription(data.description);
                         setStartDate(data.startDate);

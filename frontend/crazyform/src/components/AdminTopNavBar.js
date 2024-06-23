@@ -14,8 +14,10 @@ const AdminTopNavbar = () => {
     const [password, setPassword] = useState('');
     const [isSignUpModal, setIsSignUpModal] = useState(false)
 
+    const token = localStorage.getItem('token');
+
     const goToAdminSurvey = () => {
-        navigate('/AdminSurvey')
+        navigate(`/AdminSurvey/${token}`)
     }
 
     const goToAdminVote = () => {
@@ -44,9 +46,9 @@ const AdminTopNavbar = () => {
             setId('')
             setPassword('')
             alert('관리자를 추가하였습니다.')
-        } else{
-            setIsSignUpModal(false); 
-        }
+            } else{
+                setIsSignUpModal(false);
+            }
     }
         setIsSignUpModal(false); 
     };
@@ -54,7 +56,8 @@ const AdminTopNavbar = () => {
     const goToHome = () => {
         const isConfirmed = window.confirm('로그아웃하시겠습니까?');
         if (isConfirmed) {
-            navigate('/')
+            localStorage.removeItem('token'); // '예'를 선택했을 때 토큰 삭제
+            navigate('/'); // 홈페이지로 이동
         }
     }
 
