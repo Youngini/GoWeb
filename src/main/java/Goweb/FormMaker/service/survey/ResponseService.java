@@ -19,7 +19,9 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -69,12 +71,14 @@ public class ResponseService {
             if (question.getOptions() == null || question.getOptions().isEmpty()) {
                 response.setAnswer(createResponseDto.getAnswer());
             } else {
-                List<Option> Options = new ArrayList<>();
+                Set<ResponseOption> options = new HashSet<>();
                 for (Long optionId : createResponseDto.getResponseOptions()) {
-                    Option option = optionRepository.getReferenceById(optionId);
-                    Options.add(option);
+                    ResponseOption responseOption = new ResponseOption();
+                    responseOption.setResponse(response);
+                    responseOption.setOption(optionRepository.findById(optionId).get());
+                    options.add(responseOption);
                 }
-                response.setOptions(Options);
+                response.setResponseOptions(options);
             }
             savedResponse = responseRepository.save(response);
         }
@@ -122,8 +126,9 @@ public class ResponseService {
             }
             userQuestionDto.setOptions(userOptionDtos);
 
-            // 사용자가 선택한 질문
-            List<Long> selectedOptionIds = response.getOptions().stream()
+            // 사용자가 선택한 답변
+            List<Long> selectedOptionIds = response.getResponseOptions().stream()
+                    .map(ResponseOption::getOption)
                     .map(Option::getId)
                     .collect(Collectors.toList());
             userQuestionDto.setSelectedOptionIds(selectedOptionIds);
@@ -163,7 +168,8 @@ public class ResponseService {
                 UserResponseDto userResponseDto = new UserResponseDto();
                 userResponseDto.setStudentId(response.getUser().getId());
                 userResponseDto.setStudentName(response.getUser().getName());
-                userResponseDto.setResponse(response.getOptions().stream()
+                userResponseDto.setResponse(response.getResponseOptions().stream()
+                        .map(ResponseOption::getOption)
                         .map(Option::getName)
                         .collect(Collectors.toList()));
                 userResponseDtos.add(userResponseDto);

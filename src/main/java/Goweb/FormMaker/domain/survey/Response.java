@@ -35,10 +35,10 @@ public class Response {
     @Column(nullable = false)
     private String answer;
 
-    @OneToMany
+/*    @OneToMany
     @JoinColumn(name = "option_id")
-    private List<Option> options;
+    private List<Option> options;*/
 
-/*    @OneToMany(mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
-    private Set<ResponseOption> responseOptions;*/
+    @OneToMany(mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<ResponseOption> responseOptions;
 }

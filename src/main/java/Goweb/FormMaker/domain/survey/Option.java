@@ -31,9 +31,7 @@ public class Option {
     @JoinColumn(name = "question_id")
     private Question question;
 
-/*
     @OneToMany(mappedBy = "option", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResponseOption> responseOptions;
-*/
 
 }

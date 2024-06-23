@@ -8,4 +8,5 @@ import lombok.Getter;
 public class LoginSuccessDTO {
     private String accessToken;
     private String refreshToken;
+    private Long userId;
 }
