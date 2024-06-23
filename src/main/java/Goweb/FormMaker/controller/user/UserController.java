@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/auths")
 public class UserController {
 
-    private UserService userService;
+    private final UserService userService;
 
     @PostMapping("/find/password")
     public ResponseEntity<String> findPassword(findPasswordDTO findPasswordDTO){
