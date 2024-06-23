@@ -7,11 +7,18 @@ import '../components/style/HomePage.css';
 const HomePage = () => {
     const navigate = useNavigate();
     const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [modalIsOpen2, setModalIsOpen2] = useState(false);
     const [adminId, setAdminId] = useState('');
     const [adminPassword, setAdminPassword] = useState('');
+    const [userId, setUserId] = useState('');
+    const [userPassword, setUserPassword] = useState('');
 
     const handleButtonClick = () => {
         setModalIsOpen(true);
+    };
+
+    const handleButtonClick2 = () => {
+        setModalIsOpen2(true);
     };
 
     const handleButtonUserReg = () => {
@@ -22,6 +29,12 @@ const HomePage = () => {
         setAdminId('')
         setAdminPassword('')
         setModalIsOpen(false);
+    };
+
+    const closeModal2 = () => {
+        setUserId('')
+        setUserPassword('')
+        setModalIsOpen2(false);
     };
 
     const handleConfirmClick = async () => {
@@ -55,6 +68,44 @@ const HomePage = () => {
                 }
             } catch (error) {
                 console.error('로그인 중 오류 발생:', error);
+                alert('로그인에 실패했습니다. 다시 시도해주세요.');
+            }
+        }
+    };
+
+    const handleConfirmClick2 = async () => {
+        if (!userId || !userPassword) {
+            alert('모든 정보를 입력하세요');
+        } else {
+            try {
+                const response = await fetch(`${ApiAddress}/auths/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentNumber: userId,
+                        password: userPassword
+                    })
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    const token = data.accessToken;
+                    const userid = data.userId
+    
+                    // 토큰을 저장소에 저장 (예: 로컬 스토리지)
+                    localStorage.setItem('usertoken', token);
+                    console.log(token)
+                    alert('로그인에 성공했습니다.')
+                    navigate(`/UserSurvey/${token}/${userid}`);
+                    closeModal();
+                } else {
+                    alert('로그인에 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('로그인 중 오류 발생:', error);
+                alert('로그인에 실패했습니다. 다시 시도해주세요.');
             }
         }
     };
@@ -156,8 +207,10 @@ const HomePage = () => {
                 <div style={styles.mainContent}>
                     <div style={styles.title}>컴퓨터학부 학생회 설문조사 페이지</div>
                     <div style={styles.buttonGroup}>
-                        <button style={styles.primaryButton}>설문하러가기</button>
-                        <button style={styles.primaryButton}>투표하러가기</button>
+                        <button 
+                            style={styles.primaryButton}
+                            onClick={handleButtonClick2}
+                            >설문/투표하러가기</button>
                         <button 
                             style={{ ...styles.primaryButton, ...styles.primaryButtonLastChild }}
                             onClick={handleButtonUserReg}
@@ -218,6 +271,60 @@ const HomePage = () => {
                         marginRight : '1vw'
                     }}>확인</button>
                     <button type="button" onClick={closeModal}>취소</button>
+                </form>
+            </Modal>
+
+            <Modal
+                isOpen={modalIsOpen2}
+                onRequestClose={closeModal2}
+                contentLabel="Admin Login"
+                style={{
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        marginRight: '-50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 1000,
+                    },
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                        zIndex: 999, // Overlay의 zIndex 설정
+                    },
+                }}
+            >
+                <h2>로그인</h2>
+                <form>
+                    <label>
+                        <input
+                            type="text"
+                            value={userId}
+                            onChange={(e) => setUserId(e.target.value)}
+                            placeholder='학번'
+                            style={{
+                                marginBottom : '1vh'
+                            }}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        <input
+                            type="password"
+                            value={userPassword}
+                            onChange={(e) => setUserPassword(e.target.value)}
+                            placeholder='비밀번호'
+                            style={{
+                                marginBottom : '1vh'
+                            }}
+                        />
+                    </label>
+                    <br />
+                    <button type="button" onClick={handleConfirmClick2}
+                    style={{
+                        marginRight : '1vw'
+                    }}>확인</button>
+                    <button type="button" onClick={closeModal2}>취소</button>
                 </form>
             </Modal>
         </div>

@@ -15,6 +15,7 @@
     position : relative;
     margin-bottom : 20px;
     width : 95%;
+    margin-left: 1.5vw;
 }
 
 .formTitle {
@@ -98,6 +99,29 @@
     text-align: center;
     transition: .4s;
 }
+
+.activeFormTrue{
+    font-family: 'KCC-Hanbit';
+    width : 120px;
+    height : 45px;
+    border : 3px solid #B7183E;
+    border-radius : 20px;
+    font-size : 20px;
+    font-weight : 500;
+    background-color: #B7183E;
+    position: absolute;
+    right : 20px;
+    top : 35px;
+    text-align: center;
+    color : white;
+    transition: .4s; 
+}
+
+.activeFormTrue:hover{
+    background-color: white;
+    color : #B7183E;
+}
+
 .editSurvey:hover{
     background-color: grey;
     color : white
