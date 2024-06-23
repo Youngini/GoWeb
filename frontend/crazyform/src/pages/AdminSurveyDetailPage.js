@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 import AdminTopNavbar from "../components/AdminTopNavBar";
 import '../components/style/AdminSurveyDetailPage.css';
 import SurveyForm from "../components/SurveyForm";
@@ -7,7 +6,6 @@ import Response from "../components/Response";
 
 const AdminSurveyDetail = () => {
     const [isform, setIsform] = useState(true);
-    const { id } = useParams(); 
 
     return (
         <div>
@@ -24,7 +22,7 @@ const AdminSurveyDetail = () => {
                     </div>
                 </div>
                 {isform ? (
-                    <SurveyForm id={id} />  
+                    <SurveyForm />  
                 ) : (
                     <Response />
                 )}

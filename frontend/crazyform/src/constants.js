@@ -1,1 +1,1 @@
-export const ApiAddress = "http://172.20.144.39:8080";
+export const ApiAddress = "http://172.20.144.97:8080";
