@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import './style/AdminTopNavBar.css'
 import Logo from './logo';
+import { ApiAddress } from '../constants';
 
 const AdminTopNavbar = () => {
 
@@ -13,6 +14,7 @@ const AdminTopNavbar = () => {
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [isSignUpModal, setIsSignUpModal] = useState(false)
+    const [na, setName] = useState('')
 
     const token = localStorage.getItem('token');
 
@@ -34,23 +36,39 @@ const AdminTopNavbar = () => {
         setIsSignUpModal(false);
     };
 
-    const handleSubmit = () => {
-        if (id === ''&& password === ''){
-            alert('모든 정보를 입력해주세요')
-            return
-        }
-        else{
+    const handleSubmit = async () => {
+        if (id === '' && password === '') {
+            alert('모든 정보를 입력해주세요');
+            return;
+        } else {
             const isConfirmed = window.confirm('관리자를 추가하시겠습니까?');
             if (isConfirmed) {
-            console.log(id, password);
-            setId('')
-            setPassword('')
-            alert('관리자를 추가하였습니다.')
-            } else{
+                try {
+                    const response = await fetch(`${ApiAddress}/auths/adjoin`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${localStorage.getItem("token")}`
+                        },
+                        body: JSON.stringify({ studentNumber : id, password, name : na })
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok');
+                    }
+
+                    setId('');
+                    setPassword('');
+                    alert('관리자를 추가하였습니다.');
+                } catch (error) {
+                    console.error('Error adding admin:', error);
+                    alert('관리자 추가에 실패하였습니다.');
+                }
+            } else {
                 setIsSignUpModal(false);
             }
-    }
-        setIsSignUpModal(false); 
+        }
+        setIsSignUpModal(false);
     };
 
     const goToHome = () => {
@@ -114,11 +132,24 @@ const AdminTopNavbar = () => {
                                     }}>
                                     <label htmlFor="id"></label>
                                     <input
-                                        placeholder='아이디를 입력하세요'
+                                        placeholder='학번을 입력하세요'
                                         type="text"
                                         id="id"
                                         value={id}
                                         onChange={(e) => setId(e.target.value)}
+                                    />
+                                </div>
+                                <div
+                                    style={{
+                                        marginBottom : '1vh'
+                                    }}>
+                                    <label htmlFor="name"></label>
+                                    <input
+                                        placeholder='이름을 입력하세요'
+                                        type="text"
+                                        id="id"
+                                        value={na}
+                                        onChange={(e) => setName(e.target.value)}
                                     />
                                 </div>
                                 <div>

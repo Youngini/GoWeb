@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import TopNavBar from "../components/TopNavBar";
+import UserSurveyComponent from '../components/UserSurveyComponent';
+import '../components/style/UserSurvey.css';
 
 const UserSurvey = () => {
     const [isSurvey, setIsSurvey] = useState(true);
@@ -7,7 +9,9 @@ const UserSurvey = () => {
     return(
         <div>
             <TopNavBar isSurvey={isSurvey} setIsSurvey={setIsSurvey} />
-            {isSurvey ? <div>설문조사 페이지</div> : <div>투표 페이지</div>}
+            <div className='pagewrap'>
+                {isSurvey ? <UserSurveyComponent /> : <div>투표 페이지</div>}
+            </div>
         </div>
     )
 };

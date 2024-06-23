@@ -56,13 +56,17 @@ const HomePage = () => {
                 if (response.ok) {
                     const data = await response.json();
                     const token = data.accessToken;
-    
+                    const userType = data.userType
+                    if (userType === 'ADMIN'){
                     // 토큰을 저장소에 저장 (예: 로컬 스토리지)
-                    localStorage.setItem('token', token);
-                    console.log(token)
-                    alert('로그인에 성공했습니다.')
-                    navigate(`/AdminSurvey/${token}`);
-                    closeModal();
+                        localStorage.setItem('token', token);
+                        console.log(token)
+                        alert('로그인에 성공했습니다.')
+                        navigate(`/AdminSurvey/${token}`);
+                        closeModal();
+                    } else{
+                        alert('권한이 없습니다.')
+                    }
                 } else {
                     alert('로그인에 실패했습니다. 다시 시도해주세요.');
                 }
