@@ -44,13 +44,17 @@ export default function AdminVoteRegPage() {
   return (
     <div className="backGround">
       <div className="voteRegWrapper">
-        <div className="voteRegTitle">Create your Vote Form</div>
+        <div className="voteRegTitle">투표 폼 생성</div>
         <div className="titleInputWrapper">
-          <input className="vTitle" type="text" placeholder="Input Title" />
+          <input
+            className="vTitle"
+            type="text"
+            placeholder="폼 제목을 입력하세요."
+          />
           <input
             className="vSubtitle"
             type="text"
-            placeholder="Type Question"
+            placeholder="투표 질문을 입력하세요."
           />
         </div>
         <div className="questionWrapper">
@@ -66,14 +70,14 @@ export default function AdminVoteRegPage() {
           ))}
         </div>
         <div className="dateWrap">
-          <span>시작 날짜</span>
+          <span>시작</span>
           <input
             className="startDate"
             type="date"
             value={startDate}
             onChange={handleStartDate}
           />
-          <span>마지막 날짜</span>
+          <span>마감</span>
           <input
             className="endDate"
             type="date"
@@ -81,7 +85,7 @@ export default function AdminVoteRegPage() {
             onChange={handleEndDate}
           />
         </div>
-        
+
         <div className="footer">
           <button className="cancel" onClick={handleButtonClick}>
             취소

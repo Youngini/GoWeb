@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .voteItemWrapper {
     width : 80%;
     height : 20vh;
@@ -27,10 +34,12 @@
 
 .single-span,
 .multi-span {
+    font-family: 'KCC-Hanbit';
     font-size : 20px;
 }
 
 .optionList {
+    font-family: 'KCC-Hanbit';
     display : flex;
     flex-direction: column;
     align-items: center;
@@ -38,6 +47,7 @@
 }
 
 .optionItem {
+    font-family: 'KCC-Hanbit';
     width : 90%;
     display : flex;
     flex-direction: column;
@@ -56,6 +66,7 @@
 }
 
 .optionInput {
+    font-family: 'KCC-Hanbit';
     width : 90%;
     height : 5vh;
     border : none;
@@ -73,13 +84,16 @@
 }
 
 .optionDeletebtn {
+    font-family: 'KCC-Hanbit';
     background-color: transparent;
     border: none;
     font-size: 20px;
     font-weight : 600;
     color : #a71313;
 }
+
 .addOptionBtn {
+    font-family: 'KCC-Hanbit';
     width : 90%;
     height : 5vh;
     border-radius: 5px;

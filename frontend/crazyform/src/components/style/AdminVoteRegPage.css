@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .backGround {
+    font-family: 'KCC-Hanbit';
     height : 100vh;
     background-color: #EAA0A0;
 }
 
 .voteRegWrapper{
+    font-family: 'KCC-Hanbit';
     width : 50vw;
     border-radius: 10px;
     border : 3px solid #fff;
@@ -11,12 +20,14 @@
 }
 
 .voteRegWrapper .voteRegTitle {
+    font-family: 'KCC-Hanbit';
     font-size : 30px;
     font-weight : 600;
     text-align : center;
 }
 
 .titleInputWrapper {
+    font-family: 'KCC-Hanbit';
     margin : 0 auto;
     width : 100%;
     /* border: 1px solid #fff; */
@@ -26,6 +37,7 @@
 }
 
 .vTitle {
+    font-family: 'KCC-Hanbit';
     width : 80%;
     height : 50px;
     border : 1px solid #fff;
@@ -37,17 +49,19 @@
 }
 
 .vSubtitle {
+    font-family: 'KCC-Hanbit';
     width : 80%;
-    height : 50px;
+    height : 40px;
     border : 1px solid #fff;
     border-radius : 20px;
-    font-size : 20px;
+    font-size : 15px;
     font-weight : 600;
     background-color: white;
     margin-top : 20px;
 }
 
 .dateWrap {
+    font-family: 'KCC-Hanbit';
     width : 80%;
     height : 50px;
     border : 1px solid #fff;
@@ -63,14 +77,18 @@
 }
 
 span {
+    font-family: 'KCC-Hanbit';
+    font-size : 15px;
     margin-left : 10px;
 }
 
 .startDate, .endDate {
+    font-family: 'KCC-Hanbit';
     margin-left : 10px;
 }
 
 .footer {
+    font-family: 'KCC-Hanbit';
     width : 80%;
     /* border: 1px solid black; */
     margin : 0 auto;
@@ -82,6 +100,7 @@ span {
 
 .cancel,
 .register {
+    font-family: 'KCC-Hanbit';
     width : 50%;
     height : 50px;
     border : 1px solid #fff;
@@ -94,11 +113,13 @@ span {
 }
 
 .cancel:hover {
+    font-family: 'KCC-Hanbit';
     background-color: rgb(199, 207, 214);
     border: 1px solid rgb(199, 207, 214);
 }
 
 .register {
+    font-family: 'KCC-Hanbit';
     margin-left : 8px;
     background-color: #eff306;
     border : 1px solid #eff306;
@@ -106,6 +127,7 @@ span {
 }
 
 .register:hover{
+    font-family: 'KCC-Hanbit';
     background-color: #b8bb0c;
     border : 1px solid #b8bb0c;
 }
