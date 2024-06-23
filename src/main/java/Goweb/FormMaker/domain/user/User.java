@@ -1,6 +1,7 @@
 package Goweb.FormMaker.domain.user;
 
 import Goweb.FormMaker.domain.survey.SurveyParticipation;
+import Goweb.FormMaker.dto.auth.JoinAdminRequestDTO;
 import Goweb.FormMaker.dto.auth.JoinRequestDTO;
 import jakarta.persistence.*;
 import lombok.*;
@@ -43,6 +44,16 @@ public class User {
                 .studentNumber(userJoinRequestDTO.getStudentNumber())
                 .password(encoder.encode(userJoinRequestDTO.getPassword()))
                 .userType(UserType.STUDENT)
+                .createdAt(LocalDate.now())
+                .build();
+    }
+
+    public static User createAdminFromJoin(JoinAdminRequestDTO userJoinRequestDTO, BCryptPasswordEncoder encoder) {
+        return User.builder()
+                .name(userJoinRequestDTO.getName())
+                .studentNumber(userJoinRequestDTO.getStudentNumber())
+                .password(encoder.encode(userJoinRequestDTO.getPassword()))
+                .userType(UserType.ADMIN)
                 .createdAt(LocalDate.now())
                 .build();
     }
