@@ -3,10 +3,11 @@ package Goweb.FormMaker.dto.auth;
 import jakarta.validation.constraints.NotEmpty;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 import lombok.ToString;
 
 @ToString
-@Getter
+@Getter @Setter
 @NoArgsConstructor
 public class JoinRequestDTO {
     @NotEmpty(message = "studentNumber은 필수입니다.")
