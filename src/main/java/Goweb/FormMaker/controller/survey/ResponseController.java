@@ -32,9 +32,9 @@ public class ResponseController {
 
     @PostMapping("/{surveyId}/{userId}")
     @Operation(summary = "응답하기")
-    public ResponseEntity<Response> createResponse(@PathVariable Long surveyId, @PathVariable Long userId, @RequestBody List<CreateResponseDto> createResponseDtos) {
+    public ResponseEntity<Void> createResponse(@PathVariable Long surveyId, @PathVariable Long userId, @RequestBody List<CreateResponseDto> createResponseDtos) {
         Response savedResponse = responseService.createResponse(surveyId, userId, createResponseDtos);
-        return ResponseEntity.status(HttpStatus.CREATED).body(savedResponse);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
     @GetMapping("/{surveyId}/{userId}")

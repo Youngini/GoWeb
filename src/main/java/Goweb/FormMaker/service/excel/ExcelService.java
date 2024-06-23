@@ -1,7 +1,11 @@
 package Goweb.FormMaker.service.excel;
 
-import Goweb.FormMaker.domain.survey.Question;
+import Goweb.FormMaker.domain.survey.*;
+import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.dto.survey.ExcelSurveyResponse;
+import Goweb.FormMaker.repository.survey.ResponseRepository;
+import Goweb.FormMaker.repository.survey.SurveyParticipationRepository;
+import Goweb.FormMaker.repository.survey.SurveyRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.ss.usermodel.*;
@@ -11,15 +15,20 @@ import org.springframework.stereotype.Service;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RequiredArgsConstructor
 @Service
 public class ExcelService {
+    private final SurveyParticipationRepository surveyParticipationRepository;
+    private final ResponseRepository responseRepository;
+    private final SurveyRepository surveyRepository;
 
     // 엑셀 파일 생성 및 클라이언트에게 전송하는 메소드
-    public ByteArrayInputStream exportSurveyDataToExcel(List<ExcelSurveyResponse> surveyDataList, List<Question> questions) throws IOException {
+    public ByteArrayInputStream exportSurveyDataToExcel(Long surveyId, List<User> users, List<Question> questions) throws IOException {
         // 1. Create File
         Workbook workbook = new XSSFWorkbook();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -41,7 +50,7 @@ public class ExcelService {
         createHeaderRow(sheet, questions, headerCellStyle);
 
         // 5. 데이터 행 생성
-        createDataRows(sheet, surveyDataList, questions);
+        createDataRows(sheet, surveyId ,users, questions);
 
         // 6. 파일 작성
         workbook.write(out);
@@ -75,31 +84,41 @@ public class ExcelService {
         }
     }
 
-    private void createDataRows(Sheet sheet, List<ExcelSurveyResponse> surveyDataList, List<Question> questions) {
+    private void createDataRows(Sheet sheet, Long surveyId ,List<User> users, List<Question> questions) {
         int rowIndex = 1;
 
-        for (ExcelSurveyResponse data : surveyDataList) {
+        for (User user : users) {
             Row row = sheet.createRow(rowIndex++);
+            Survey survey = surveyRepository.getReferenceById(surveyId);
+            List<Response> responses = responseRepository.findBySurveyAndUser(survey, user);
 
-/*
-            row.createCell(0).setCellValue(data.getSurvey_id());
-            row.createCell(1).setCellValue(data.getCreated_at());
-            row.createCell(2).setCellValue(data.getSenior_id());
-            row.createCell(3).setCellValue(data.getSenior_name());
+            row.createCell(1).setCellValue(user.getName());
+            row.createCell(2).setCellValue(user.getStudentNumber());
 
-            List<String> weights = data.getWeights();
-            for (int i = 0; i < weights.size(); i++) {
-                row.createCell(i + 4).setCellValue(weights.get(i));
+            int j = 3;
+            for (Response response : responses) {
+                row.createCell(0).setCellValue(response.getUpdatedAt());
+
+                if (response.getAnswer() != null)
+                    row.createCell(j++).setCellValue(response.getAnswer());
+                else{
+                    String responseOptionNames = response.getResponseOptions().stream()
+                            .map(ResponseOption::getOption)
+                            .map(Option::getName)
+                            .collect(Collectors.joining(", "));
+                    row.createCell(j++).setCellValue(responseOptionNames);
+                }
             }
 
-            row.createCell(weights.size() + 4).setCellValue(data.getRank());
-        }
-*/
 
             // 열 너비 자동 조정
             for (int i = 0; i < 4 + questions.size() + 1; i++) {
                 sheet.autoSizeColumn(i);
             }
         }
+    }
+
+    public List<User> findUserbySurveyId(Long surveyId) {
+        return surveyParticipationRepository.findUserBySurveyId(surveyId);
     }
 }

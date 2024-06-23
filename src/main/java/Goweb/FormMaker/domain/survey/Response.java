@@ -33,7 +33,6 @@ public class Response {
     @JoinColumn(name = "question_id")
     private Question question;
 
-    @Column(nullable = false)
     private String answer;
 
 /*    @OneToMany

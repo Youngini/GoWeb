@@ -17,10 +17,7 @@ import Goweb.FormMaker.repository.user.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -169,10 +166,14 @@ public class ResponseService {
                 UserResponseDto userResponseDto = new UserResponseDto();
                 userResponseDto.setStudentId(response.getUser().getId());
                 userResponseDto.setStudentName(response.getUser().getName());
-                userResponseDto.setResponse(response.getResponseOptions().stream()
-                        .map(ResponseOption::getOption)
-                        .map(Option::getName)
-                        .collect(Collectors.toList()));
+                if (response.getAnswer() != null)
+                    userResponseDto.setResponse(Collections.singletonList(response.getAnswer()));
+                else{
+                    userResponseDto.setResponse(response.getResponseOptions().stream()
+                            .map(ResponseOption::getOption)
+                            .map(Option::getName)
+                            .collect(Collectors.toList()));
+                }
                 userResponseDtos.add(userResponseDto);
             }
             surveyQuestionDto.setSelectedOptions(userResponseDtos);

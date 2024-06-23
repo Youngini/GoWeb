@@ -1,10 +1,12 @@
 package Goweb.FormMaker.controller.excel;
 
 import Goweb.FormMaker.domain.survey.Question;
+import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.dto.survey.ExcelSurveyResponse;
 import Goweb.FormMaker.service.excel.ExcelService;
 import Goweb.FormMaker.service.survey.QuestionService;
 import Goweb.FormMaker.service.survey.SurveyService;
+import Goweb.FormMaker.service.user.UserService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.core.io.InputStreamResource;
@@ -29,14 +31,15 @@ public class ExcelController {
     private final ExcelService excelService;
     private final QuestionService questionService; // Question 데이터를 가져오기 위한 서비스
     private final SurveyService surveyService;
+    private final UserService userService;
 
     @GetMapping("/surveyDownload/{surveyId}")
     public ResponseEntity<InputStreamResource> downloadSurveyExcel(@PathVariable Long surveyId) {
         try {
-            List<ExcelSurveyResponse> data = surveyService.getAllResponse(surveyId); // 특정 설문조사에 대한 모든 응답 가져오기
+            List<User> users = excelService.findUserbySurveyId(surveyId); // 응답한 사용자 불러오기
             List<Question> questions = questionService.getAllQuestions(surveyId); // 모든 질문 가져오기
 
-            ByteArrayInputStream result = excelService.exportSurveyDataToExcel(data, questions);
+            ByteArrayInputStream result = excelService.exportSurveyDataToExcel(surveyId, users, questions);
 
             String fileName = "SurveyData_" + LocalDate.now().toString() + ".xlsx";
             HttpHeaders headers = new HttpHeaders();
