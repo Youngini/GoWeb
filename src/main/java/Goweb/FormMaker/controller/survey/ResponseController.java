@@ -2,6 +2,8 @@ package Goweb.FormMaker.controller.survey;
 
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.Response;
+import Goweb.FormMaker.dto.survey.SurveyListDto;
+import Goweb.FormMaker.dto.survey.UserSurveyList;
 import Goweb.FormMaker.dto.survey.surveyResponses.SurveyResponseDto;
 import Goweb.FormMaker.dto.survey.userResponse.UserSurveyDto;
 import Goweb.FormMaker.service.survey.ResponseService;
@@ -19,6 +21,13 @@ public class ResponseController {
 
     public ResponseController(ResponseService responseService) {
         this.responseService = responseService;
+    }
+
+    @GetMapping()
+    @Operation(summary = "학생이 응답할 수 있는 설문 리스트 가져오기")
+    public ResponseEntity<List<UserSurveyList>> getSurveys() {
+        List<UserSurveyList> surveyListDtos = responseService.getAllSurveys();
+        return new ResponseEntity<>(surveyListDtos, HttpStatus.OK);
     }
 
     @PostMapping("/{surveyId}/{userId}")

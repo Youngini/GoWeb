@@ -3,6 +3,8 @@ package Goweb.FormMaker.service.survey;
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
+import Goweb.FormMaker.dto.survey.SurveyListDto;
+import Goweb.FormMaker.dto.survey.UserSurveyList;
 import Goweb.FormMaker.dto.survey.surveyResponses.SurveyResponseDto;
 import Goweb.FormMaker.dto.survey.surveyResponses.SurveyQuestionDto;
 import Goweb.FormMaker.dto.survey.surveyResponses.UserResponseDto;
@@ -214,6 +216,23 @@ public class ResponseService {
 
         // 응답 저장
         return responseRepository.save(existingResponse);
+    }
+
+    public List<UserSurveyList> getAllSurveys() {
+        List<Survey> surveys = surveyRepository.findAll();
+        List<UserSurveyList> surveyLists = new ArrayList<>();
+        for (Survey survey : surveys) {
+            if (survey.isActivation()) {
+                UserSurveyList surveyListDto = new UserSurveyList();
+                surveyListDto.setId(survey.getId());
+                surveyListDto.setTitle(survey.getTitle());
+                surveyListDto.setStartDate(survey.getStartDate());
+                surveyListDto.setDueDate(survey.getDueDate());
+                surveyListDto.setHashtag(survey.getHashtag());
+                surveyLists.add(surveyListDto);
+            }
+        }
+        return surveyLists;
     }
     
     /*@Transactional
