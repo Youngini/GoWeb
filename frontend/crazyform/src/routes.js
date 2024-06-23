@@ -8,6 +8,7 @@ import AdminVoteRegPage from "./pages/AdminVoteRegPage";
 import HomePage from "./pages/HomePage";
 import UserReg from "./pages/UserRegPage";
 
+const token = localStorage.getItem('token');
 
 const routes = [
   {
@@ -19,7 +20,11 @@ const routes = [
     component : UserReg
   },
   {
-    path : "AdminSurvey",
+    path : "AdminSurvey/:num",
+    component : AdminSurveyPage
+  },
+  {
+    path : `AdminSurvey/${token}`,
     component : AdminSurveyPage
   },
   {
@@ -27,7 +32,11 @@ const routes = [
     component : AdminSurveyDetail
   },
   {
-    path : "AdminSurveyReg",
+    path : "AdminSurveyReg/:num",
+    component : AdminSurveyReg
+  },
+  {
+    path : `AdminSurveyReg/${token}`,
     component : AdminSurveyReg
   },
   {

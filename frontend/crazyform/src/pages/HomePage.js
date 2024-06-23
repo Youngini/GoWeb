@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import { ApiAddress } from '../constants';
 
 const HomePage = () => {
     const navigate = useNavigate();
@@ -17,18 +18,46 @@ const HomePage = () => {
     };
 
     const closeModal = () => {
+        setAdminId('')
+        setAdminPassword('')
         setModalIsOpen(false);
     };
 
-    const handleConfirmClick = () => {
-        if (!adminId || !adminPassword){
-            alert('모든 정보를 입력하세요')
-        }
-        else{
-            navigate('/AdminSurvey');
-            closeModal();
+    const handleConfirmClick = async () => {
+        if (!adminId || !adminPassword) {
+            alert('모든 정보를 입력하세요');
+        } else {
+            try {
+                const response = await fetch(`${ApiAddress}/auths/login`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        studentNumber: adminId,
+                        password: adminPassword
+                    })
+                });
+    
+                if (response.ok) {
+                    const data = await response.json();
+                    const token = data.accessToken;
+    
+                    // 토큰을 저장소에 저장 (예: 로컬 스토리지)
+                    localStorage.setItem('token', token);
+                    console.log(token)
+                    alert('로그인에 성공했습니다.')
+                    navigate(`/AdminSurvey/${token}`);
+                    closeModal();
+                } else {
+                    alert('로그인에 실패했습니다. 다시 시도해주세요.');
+                }
+            } catch (error) {
+                console.error('로그인 중 오류 발생:', error);
+            }
         }
     };
+    
 
     const styles = {
         container: {

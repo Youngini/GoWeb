@@ -126,7 +126,7 @@ const Question = ({ question, onUpdate, onDelete, index, moveQuestion }) => {
     );
 };
 
-const SurveyForm = () => {
+const SurveyForm = ({token}) => {
     const [questions, setQuestions] = useState([{}]);
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
@@ -245,8 +245,10 @@ const SurveyForm = () => {
         try {
             const response = await fetch(`${ApiAddress}/surveys`, {
                 method: 'POST', 
+                
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${localStorage.getItem("token")}`
                 },
                 body: JSON.stringify(data),
             });
@@ -255,7 +257,7 @@ const SurveyForm = () => {
             if (response.ok) {
                 console.log('Survey submitted successfully');
                 alert('설문조사가 등록되었습니다.')
-                navigate('/AdminSurvey')
+                navigate(`/AdminSurvey/${token}`)
             } else {
                 console.error('Failed to submit survey');
             }
