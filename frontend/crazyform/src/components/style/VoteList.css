@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .voteListWrapper {
     display: flex;
     flex-direction: column;
@@ -5,6 +12,7 @@
 }
 
 .voteListInfo {
+    font-family: 'Ownglyph_ryuttung-Rg';
     display: flex;
     flex-direction: row;
     width: 70vw;
@@ -24,6 +32,8 @@
 }
 
 .addVotebutton {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    font-size : 18px;
     margin-top: 0.8vh;
     margin-left: 2vw;
     margin-right : 1vw;

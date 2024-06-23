@@ -1,4 +1,12 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .logo {
+    font-family: 'Ownglyph_ryuttung-Rg';
     width : 150px;
     height : 150px;
     perspective: 400px;

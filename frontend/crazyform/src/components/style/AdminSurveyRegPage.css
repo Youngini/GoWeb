@@ -1,9 +1,18 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .surveydetailpageContent{
+    font-family: 'Ownglyph_ryuttung-Rg';
     display: flex;
     flex-direction: row;
 }
 
 .buttonContent{
+    font-family: 'Ownglyph_ryuttung-Rg';
     display: flex;
     flex-direction: column;
     margin-left : 6vw;
@@ -13,12 +22,14 @@
 }
 
 .buttonWrap-active{
+    font-family: 'Ownglyph_ryuttung-Rg';
     margin-bottom : 5vh;
     font-size: 3vh;
     font-weight: bold;
 }
 
 .buttonWrap{
+    font-family: 'Ownglyph_ryuttung-Rg';
     margin-bottom : 5vh;
     font-size: 3vh;
 }

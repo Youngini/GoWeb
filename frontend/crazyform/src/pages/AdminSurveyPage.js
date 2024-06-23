@@ -3,6 +3,7 @@ import AdminTopNavbar from "../components/AdminTopNavBar";
 import CategoryList from '../components/CategoryList';
 import FormList from "../components/FormList";
 import '../components/style/AdminSurveyPage.css';
+import PathCategory from "../components/pathCategory";
 
 const AdminSurveyPage = () => {
   const [activeCategory, setActiveCategory] = useState(null);
@@ -12,8 +13,15 @@ const AdminSurveyPage = () => {
       {/* <Logo /> */}
       <AdminTopNavbar />
       <div className='surveypageContent'>
-        <CategoryList onCategoryChange={setActiveCategory} />
-        <FormList activeCategory={activeCategory} />
+        <div className="hashCategory">
+          <CategoryList onCategoryChange={setActiveCategory} />
+        </div>
+        <div className="FormList">
+          <FormList activeCategory={activeCategory} />
+        </div>
+        <div className="path-Category">
+          <PathCategory />
+        </div> 
       </div>
     </div>
   );

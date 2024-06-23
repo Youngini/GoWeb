@@ -1,22 +1,33 @@
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .survey-form{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: column;
     margin-left: 5vw;
 }
 
 .titlewrap{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: row;
     margin-top: 2vh;
 }
 
 .title{
+    font-family: 'KCC-Hanbit';
     width: 50vw;
     height: 4vh;
     border-radius: 0.5vh;
 }
 
 .addCategory{
+    font-family: 'KCC-Hanbit';
     margin-top: 1vh;
     width: 60vw;
     height: 3vh;
@@ -25,6 +36,7 @@
 }
 
 .description{
+    font-family: 'KCC-Hanbit';
     margin-top: 1vh;
     width: 60vw;
     height: 8vh;
@@ -32,31 +44,37 @@
 }
 
 .dateWrap{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: row;
     margin-top: 1vh;
 }
 
 .dateinput{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
 }
 
 .enddate{
+    font-family: 'KCC-Hanbit';
     margin-left: 5vw;
 }
 
 .questionTitleWrap{
+    font-family: 'KCC-Hanbit';
     margin-left: 2vw;
     margin-top: 2vh;
 }
 
 .questionTitle{
+    font-family: 'KCC-Hanbit';
     width: 48vw;
     height: 5vh;
     border-radius: 0.5vh;
 }
 
 .submitbutton{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
     width: 4vw;
     height: 4vh;
@@ -68,6 +86,7 @@
 }
 
 .submitbutton:hover{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
     width: 4vw;
     height: 4vh;
@@ -79,6 +98,7 @@
 }
 
 .deletebutton{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
     width: 4vw;
     height: 4vh;
@@ -90,6 +110,7 @@
 }
 
 .deletebutton:hover{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
     width: 4vw;
     height: 4vh;
@@ -101,6 +122,7 @@
 }
 
 .firstinput{
+    font-family: 'KCC-Hanbit';
     width: 75%;
     height: 40%;
     margin-left: 2vw;
@@ -109,6 +131,7 @@
 }
 
 .secondinputwrap{
+    font-family: 'KCC-Hanbit';
     margin-bottom: 1vh;
     margin-left: 2vw;
     display: flex;
@@ -116,16 +139,19 @@
 }
 
 .secondinput{
+    font-family: 'KCC-Hanbit';
     width: 40vw;
     height: 4vh;
 }
 
 .optiondeletebuttonwrap{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
     align-content: center;
 }
 
 .optiondeletebutton{
+    font-family: 'KCC-Hanbit';
     width: 4vw;
     height: 4vh;
     border-radius: 1vh;
@@ -136,6 +162,7 @@
 }
 
 .optiondeletebutton:hover{
+    font-family: 'KCC-Hanbit';
     width: 4vw;
     height: 4vh;
     border-radius: 1vh;
@@ -146,17 +173,20 @@
 }
 
 .question{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: column;
 }
 
 .makerow{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: row;
     justify-content: space-between;
 }
 
 .deleteqwrap {
+    font-family: 'KCC-Hanbit';
     margin-top: auto;
     display: flex;
     justify-content: space-between;
@@ -167,6 +197,7 @@
 }
 
 .addoptionwrap{
+    font-family: 'KCC-Hanbit';
     display: flex;
     justify-content: flex-end;
     margin-top: 1vh;
@@ -174,6 +205,7 @@
 }
 
 .addoption {
+    font-family: 'KCC-Hanbit';
     width: 8vw;
     height: 4vh;
     border-radius: 2vh;
@@ -184,6 +216,7 @@
 }
 
 .addoption:hover {
+    font-family: 'KCC-Hanbit';
     width: 8vw;
     height: 4vh;
     border-radius: 2vh;
@@ -195,6 +228,7 @@
 
 
 .questionadd{
+    font-family: 'KCC-Hanbit';
     width: 60vw;
     height: 7vh;
     border : 3px solid grey;
@@ -206,6 +240,7 @@
 }
 
 .questionadd:hover{
+    font-family: 'KCC-Hanbit';
     width: 60vw;
     height: 7vh;
     border : 3px solid grey;
@@ -217,6 +252,7 @@
 }
 
 .question{
+    font-family: 'KCC-Hanbit';
     display: flex;
     flex-direction: column;
     min-height: 140px;
@@ -227,6 +263,7 @@
 }
 
 .selectoptionwrap{
+    font-family: 'KCC-Hanbit';
     display: flex;
     justify-content: flex-end;
     margin-top: 1vh;
@@ -234,6 +271,7 @@
 }
 
 .selectoption{
+    font-family: 'KCC-Hanbit';
     width: 8vw;
     height: 4vh;
     border : 3px solid skyblue;
@@ -243,6 +281,7 @@
 }
 
 .deleteq{
+    font-family: 'KCC-Hanbit';
     margin-top: 1vh;
     width: 8vw;
     height: 4vh;
@@ -254,6 +293,7 @@
 }
 
 .deleteq:hover{
+    font-family: 'KCC-Hanbit';
     width: 8vw;
     height: 4vh;
     border: 3px solid grey;

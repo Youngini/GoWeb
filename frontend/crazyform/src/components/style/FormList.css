@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .formlistWrapper {
     display : flex;
     flex-direction: column;
@@ -5,6 +12,7 @@
 }
 
 .formlistInfo {
+    font-family: 'Ownglyph_ryuttung-Rg';
     display : flex;
     flex-direction: column;
     /* border : 1px solid black; */
@@ -21,6 +29,8 @@
 }
 
 .addSurveybutton{
+    font-family: 'Ownglyph_ryuttung-Rg';
+    font-size : 18px;
     margin-top: 0.8vh;
     margin-left: 2vw;
     width: 8vw;
@@ -48,4 +58,5 @@
 .listCount {
     font-size : 20px;
     margin : 10px 0;
+    font-weight: 600;
 }

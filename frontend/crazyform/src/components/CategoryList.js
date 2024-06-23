@@ -32,7 +32,7 @@ export default function CategoryList({ onCategoryChange }) {
   return (
     <div className='CategoryFrame'>
       <div className='CategoryTitle'>
-        Category
+        CATEGORY
       </div>
       <div className='CategoryList'>
         {renderCategoryList}

@@ -1,6 +1,13 @@
+@font-face {
+    font-family: 'KCC-Hanbit';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2403-2@1.0/KCC-Hanbit.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .formWrapper {
+    font-family: 'KCC-Hanbit';
     box-sizing : border-box;
-    width : 70vw;
     height: 14vh;
     border : 3px solid black;
     background-color: white;
@@ -18,6 +25,7 @@
 }
 
 .detail{
+    font-family: 'KCC-Hanbit';
     width : 100px;
     height : 45px;
     border : 3px solid #1891B7;
@@ -33,15 +41,18 @@
 }
 
 .hashtag{
+    font-family: 'KCC-Hanbit';
     margin-left: 1vw;
 }
 
 .detail:hover{
+    font-family: 'KCC-Hanbit';
     background-color: #1891B7;
     color : white;
 }
 
 .editSurvey{
+    font-family: 'KCC-Hanbit';
     width: 150px;
     height: 45px;
     border : 3px solid grey;
@@ -57,12 +68,13 @@
 }
 
 .showResponse {
+    font-family: 'KCC-Hanbit';
     width : 100px;
     height : 45px;
     border : 3px solid #1891B7;
     border-radius : 20px;
     font-size : 20px;
-    font-weight : 600;
+    font-weight : 500;
     background-color: white;
     position: absolute;
     right : 150px;
@@ -72,12 +84,13 @@
 }
 
 .activeForm {
+    font-family: 'KCC-Hanbit';
     width : 120px;
     height : 45px;
     border : 3px solid #B7183E;
     border-radius : 20px;
     font-size : 20px;
-    font-weight : 600;
+    font-weight : 500;
     background-color: white;
     position: absolute;
     right : 20px;

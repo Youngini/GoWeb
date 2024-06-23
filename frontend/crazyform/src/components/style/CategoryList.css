@@ -1,4 +1,12 @@
+@font-face {
+    font-family: 'Ownglyph_ryuttung-Rg';
+    src: url('https://fastly.jsdelivr.net/gh/projectnoonnu/2405-2@1.0/Ownglyph_ryuttung-Rg.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
+
 .CategoryFrame {
+    font-family: 'Ownglyph_ryuttung-Rg';
     display : flex;
     flex-direction: column;
     margin-left : 30px;
@@ -7,11 +15,13 @@
 }
 
 .CategoryTitle {
+    font-family: 'Ownglyph_ryuttung-Rg';
     font-size : 30px;
     margin : 10px;
 }
 
 .CategoryList {
+    font-family: 'Ownglyph_ryuttung-Rg';
     display : flex;
     flex-direction: column;
     /* border : 1px solid black; */
