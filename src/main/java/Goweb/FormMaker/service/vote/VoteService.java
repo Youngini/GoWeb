@@ -1,5 +1,6 @@
 package Goweb.FormMaker.service.vote;
 
+import Goweb.FormMaker.dto.vote.AllVotesDTO;
 import Goweb.FormMaker.dto.vote.CreateVoteDTO;
 import Goweb.FormMaker.dto.vote.VoteResultDTO;
 import Goweb.FormMaker.domain.user.User;
@@ -16,6 +17,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -77,8 +79,14 @@ public class VoteService {
     }
 
     @Transactional(readOnly = true)
-    public List<Vote> getAllVotes() {
-        return voteRepository.findAll();
+    public List<AllVotesDTO> getAllVotes() {
+        List<Vote> votes = voteRepository.findAll();
+        List<AllVotesDTO> allVotesDTOS = new ArrayList<>();
+        for (Vote vote : votes) {
+            AllVotesDTO allVotesDTO = new AllVotesDTO(vote.getId(),vote.getName());
+            allVotesDTOS.add(allVotesDTO);
+        }
+        return allVotesDTOS;
     }
 
     public Vote findVoteById(Long voteId){
