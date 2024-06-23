@@ -47,11 +47,19 @@ const routes = [
     component : AdminSurveyReg
   },
   {
-    path : "AdminVote",
+    path : "AdminVote/:num",
     component : AdminVotePage
   },
   {
-    path : "AdminVoteReg",
+    path : `AdminVote/${token}`,
+    component : AdminVotePage
+  },
+  {
+    path : "AdminVoteReg/:num",
+    component : AdminVoteRegPage
+  },
+  {
+    path : `AdminVoteReg/${token}`,
     component : AdminVoteRegPage
   },
   {
@@ -61,7 +69,7 @@ const routes = [
   {
     path: `UserSurvey/${usertoken}/:id`,
     component : UserSurvey
-  }
+  },
 ];
 
 export default routes;
