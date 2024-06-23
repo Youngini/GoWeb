@@ -9,6 +9,10 @@ import Goweb.FormMaker.dto.survey.createSurvey.CreateSurveyDto;
 import Goweb.FormMaker.dto.survey.loadSurvey.LoadOptionDto;
 import Goweb.FormMaker.dto.survey.loadSurvey.LoadQuestionDto;
 import Goweb.FormMaker.dto.survey.loadSurvey.LoadSurveyDto;
+import Goweb.FormMaker.dto.survey.updateSurvey.UpdateOptionDto;
+import Goweb.FormMaker.dto.survey.updateSurvey.UpdateQuestionDto;
+import Goweb.FormMaker.dto.survey.updateSurvey.UpdateSurveyDto;
+import Goweb.FormMaker.exception.ResourceNotFoundException;
 import Goweb.FormMaker.exception.SurveyNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
@@ -180,6 +184,87 @@ public class SurveyService {
         }
 
         return data;
+    }
+
+    @Transactional
+    public LoadSurveyDto updateSurvey(Long surveyId, UpdateSurveyDto updateSurveyDto) {
+        // 기존 설문조사 정보 가져오기
+        Survey existingSurvey = surveyRepository.findById(surveyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Survey not found"));
+
+        // 설문조사 정보 업데이트
+        existingSurvey.setTitle(updateSurveyDto.getTitle());
+        existingSurvey.setDescription(updateSurveyDto.getDescription());
+        existingSurvey.setStartDate(updateSurveyDto.getStartDate());
+        existingSurvey.setDueDate(updateSurveyDto.getDueDate());
+        existingSurvey.setActivation(updateSurveyDto.isActivation());
+        existingSurvey.setHashtag(updateSurveyDto.getHashtag());
+
+        // 기존 질문 삭제
+        questionRepository.deleteAllBySurvey(existingSurvey);
+
+        // 새로운 질문 생성
+        List<Question> questions = new ArrayList<>();
+        for (UpdateQuestionDto updateQuestionDto : updateSurveyDto.getQuestions()) {
+            Question question = new Question();
+            question.setNum(updateQuestionDto.getOrder());
+            question.setContent(updateQuestionDto.getContent());
+            question.setQuestionType(updateQuestionDto.getQuestionType());
+            question.setImageUrl(updateQuestionDto.getImageUrl());
+            question.setSurvey(existingSurvey);
+
+            List<Option> options = new ArrayList<>();
+            for (UpdateOptionDto updateOptionDto : updateQuestionDto.getOptions()) {
+                Option option = new Option();
+                option.setName(updateOptionDto.getName());
+                option.setNum(updateOptionDto.getOrder());
+                option.setImageUrl(updateOptionDto.getImageUrl());
+                option.setQuestion(question);
+                options.add(option);
+            }
+            question.setOptions(options);
+            questions.add(question);
+        }
+        existingSurvey.setQuestions(questions);
+
+        // 업데이트된 설문조사 저장
+        Survey updatedSurvey = surveyRepository.save(existingSurvey);
+
+        // LoadSurveyDto로 변환
+        return convertToLoadSurveyDto(updatedSurvey);
+    }
+
+    private LoadSurveyDto convertToLoadSurveyDto(Survey survey) {
+        LoadSurveyDto loadSurveyDto = new LoadSurveyDto();
+        loadSurveyDto.setTitle(survey.getTitle());
+        loadSurveyDto.setDescription(survey.getDescription());
+        loadSurveyDto.setStartDate(survey.getStartDate());
+        loadSurveyDto.setDueDate(survey.getDueDate());
+        loadSurveyDto.setActivation(survey.isActivation());
+        loadSurveyDto.setHashtag(survey.getHashtag());
+
+        List<LoadQuestionDto> loadQuestionDtos = new ArrayList<>();
+        for (Question question : survey.getQuestions()) {
+            LoadQuestionDto loadQuestionDto = new LoadQuestionDto();
+            loadQuestionDto.setNum(question.getNum());
+            loadQuestionDto.setContent(question.getContent());
+            loadQuestionDto.setQuestionType(question.getQuestionType());
+            loadQuestionDto.setImageUrl(question.getImageUrl());
+
+            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            for (Option option : question.getOptions()) {
+                LoadOptionDto loadOptionDto = new LoadOptionDto();
+                loadOptionDto.setNum(option.getNum());
+                loadOptionDto.setName(option.getName());
+                loadOptionDto.setImageUrl(option.getImageUrl());
+                loadOptionDtos.add(loadOptionDto);
+            }
+            loadQuestionDto.setOptions(loadOptionDtos);
+            loadQuestionDtos.add(loadQuestionDto);
+        }
+        loadSurveyDto.setQuestions(loadQuestionDtos);
+
+        return loadSurveyDto;
     }
 
 }

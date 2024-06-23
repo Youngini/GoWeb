@@ -2,9 +2,9 @@ package Goweb.FormMaker.controller.survey;
 
 import Goweb.FormMaker.dto.survey.createSurvey.CreateSurveyDto;
 import Goweb.FormMaker.dto.survey.loadSurvey.LoadSurveyDto;
-import Goweb.FormMaker.dto.survey.surveyResponses.SurveyResponseDto;
 import Goweb.FormMaker.dto.survey.SurveyListDto;
 import Goweb.FormMaker.domain.survey.Survey;
+import Goweb.FormMaker.dto.survey.updateSurvey.UpdateSurveyDto;
 import Goweb.FormMaker.service.survey.SurveyService;
 import io.swagger.v3.oas.annotations.Operation;
 import jakarta.validation.Valid;
@@ -31,12 +31,12 @@ public class SurveyController {
         return new ResponseEntity<>(savedSurvey, HttpStatus.CREATED);
     }
 
-/*    @PutMapping("/{surveyId}")
+    @PutMapping("/{surveyId}")
     @Operation(summary = "설문조사 내용 수정")
-    public ResponseEntity<Survey> uspdateSurvey(@PathVariable Long surveyId){
-        Survey updatedSurvey = surveyService.updateSurvey();
+    public ResponseEntity<LoadSurveyDto> uspdateSurvey(@PathVariable Long surveyId, @RequestBody @Valid UpdateSurveyDto updateSurveyDto){
+        LoadSurveyDto updatedSurvey = surveyService.updateSurvey(surveyId, updateSurveyDto);
         return new ResponseEntity<>(updatedSurvey, HttpStatus.CREATED);
-    }*/
+    }
 
     @GetMapping
     @Operation(summary = "설문조사 리스트 불러오기")
