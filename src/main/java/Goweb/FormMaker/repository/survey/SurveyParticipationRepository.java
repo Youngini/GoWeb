@@ -12,5 +12,5 @@ public interface SurveyParticipationRepository extends JpaRepository<SurveyParti
 
     List<SurveyParticipation> findBySurveyId(Long surveyId);
 
-    List<User> findUserBySurveyId(Long surveyId);
+    List<SurveyParticipation> findUserBySurveyId(Long surveyId);
 }

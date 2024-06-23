@@ -110,15 +110,18 @@ public class ExcelService {
                 }
             }
 
-
             // 열 너비 자동 조정
-            for (int i = 0; i < 4 + questions.size() + 1; i++) {
+            for (int i = 0; i < 3 + questions.size() + 1; i++) {
                 sheet.autoSizeColumn(i);
             }
         }
     }
 
     public List<User> findUserbySurveyId(Long surveyId) {
-        return surveyParticipationRepository.findUserBySurveyId(surveyId);
+        List<SurveyParticipation> surveyParticipations = surveyParticipationRepository.findBySurveyId(surveyId);
+        List<User> users = surveyParticipations.stream()
+                .map(SurveyParticipation::getUser)
+                .collect(Collectors.toList());
+        return users;
     }
 }
