@@ -42,11 +42,11 @@ public class ResponseController {
         return ResponseEntity.ok(surveyResponse);
     }
 
-/*    @PutMapping("/{responseId}")
+    @PutMapping("/{surveyId}/{userId}")
     @Operation(summary = "특정 사용자 응답 수정하기")
-    public ResponseEntity<Response> updateResponse(@PathVariable Long responseId, @RequestBody CreateResponseDto createResponseDto) {
-        Response updatedResponse = responseService.updateResponse(responseId, createResponseDto);
+    public ResponseEntity<Response> updateResponse(@PathVariable Long surveyId, @PathVariable Long userId, @RequestBody List<CreateResponseDto> createResponseDtos) {
+        Response updatedResponse = responseService.updateResponse(surveyId, userId, createResponseDtos);
         return ResponseEntity.ok(updatedResponse);
-    }*/
+    }
 }
 

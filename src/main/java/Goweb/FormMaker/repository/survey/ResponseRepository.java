@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface ResponseRepository extends JpaRepository<Response,Long> {
@@ -17,4 +18,6 @@ public interface ResponseRepository extends JpaRepository<Response,Long> {
     List<Response> findBySurveyAndUser(Survey survey, User user);
 
     List<Response> findByQuestionId(Long id);
+
+    Optional<Response> findBySurveyIdAndUserId(Long surveyId, Long userId);
 }

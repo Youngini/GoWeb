@@ -10,10 +10,7 @@ import Goweb.FormMaker.dto.survey.userResponse.UserOptionDto;
 import Goweb.FormMaker.dto.survey.userResponse.UserQuestionDto;
 import Goweb.FormMaker.dto.survey.userResponse.UserSurveyDto;
 import Goweb.FormMaker.exception.ResourceNotFoundException;
-import Goweb.FormMaker.repository.survey.OptionRepository;
-import Goweb.FormMaker.repository.survey.QuestionRepository;
-import Goweb.FormMaker.repository.survey.ResponseRepository;
-import Goweb.FormMaker.repository.survey.SurveyRepository;
+import Goweb.FormMaker.repository.survey.*;
 import Goweb.FormMaker.repository.user.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
@@ -31,15 +28,17 @@ public class ResponseService {
     private final SurveyRepository surveyRepository;
     private final QuestionRepository questionRepository;
     private final OptionRepository optionRepository;
+    private final ResponseOptionRepository responseOptionRepository;
 
     public ResponseService(ResponseRepository responseRepository, UserRepository userRepository,
                            SurveyRepository surveyRepository, QuestionRepository questionRepository,
-                           OptionRepository optionRepository) {
+                           OptionRepository optionRepository, ResponseOptionRepository responseOptionRepository) {
         this.responseRepository = responseRepository;
         this.userRepository = userRepository;
         this.surveyRepository = surveyRepository;
         this.questionRepository = questionRepository;
         this.optionRepository = optionRepository;
+        this.responseOptionRepository = responseOptionRepository;
     }
 
     @Transactional
@@ -180,6 +179,41 @@ public class ResponseService {
         surveyResponseDto.setQuestions(surveyQuestionDtos);
 
         return surveyResponseDto;
+    }
+
+    @Transactional
+    public Response updateResponse(Long surveyId, Long userId, List<CreateResponseDto> createResponseDtos) {
+        // 기존 응답 찾기
+        Response existingResponse = responseRepository.findBySurveyIdAndUserId(surveyId, userId)
+                .orElseThrow(() -> new ResourceNotFoundException("Response not found"));
+
+        // 응답 옵션 삭제
+        existingResponse.getResponseOptions().clear();
+        responseOptionRepository.deleteAllByResponse(existingResponse);
+
+        // 새로운 응답 정보 설정
+        for (CreateResponseDto createResponseDto : createResponseDtos) {
+            // 질문 가져오기
+            Question question = questionRepository.findById(createResponseDto.getQuestionId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Question not found"));
+
+            // 선택지 연결
+            if (question.getOptions() == null || question.getOptions().isEmpty()) {
+                existingResponse.setAnswer(createResponseDto.getAnswer());
+            } else {
+                Set<ResponseOption> options = new HashSet<>();
+                for (Long optionId : createResponseDto.getResponseOptions()) {
+                    ResponseOption responseOption = new ResponseOption();
+                    responseOption.setResponse(existingResponse);
+                    responseOption.setOption(optionRepository.findById(optionId).get());
+                    options.add(responseOption);
+                }
+                existingResponse.setResponseOptions(options);
+            }
+        }
+
+        // 응답 저장
+        return responseRepository.save(existingResponse);
     }
     
     /*@Transactional
