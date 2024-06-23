@@ -19,16 +19,16 @@ public class ResponseController {
         this.responseService = responseService;
     }
 
-    @PostMapping
+    @PostMapping("/{surveyId}/{userId}")
     @Operation(summary = "응답하기")
-    public ResponseEntity<Response> createResponse(@RequestBody CreateResponseDto createResponseDto) {
-        Response savedResponse = responseService.createResponse(createResponseDto);
+    public ResponseEntity<Response> createResponse(@PathVariable Long surveyId, @PathVariable Long userId, @RequestBody List<CreateResponseDto> createResponseDtos) {
+        Response savedResponse = responseService.createResponse(surveyId, userId, createResponseDtos);
         return ResponseEntity.status(HttpStatus.CREATED).body(savedResponse);
     }
 
-    @GetMapping("/user/{responseId}")
+    @GetMapping("/user/{surveyId}/{userId}")
     @Operation(summary = "특정 사용자 응답 가져오기")
-    public ResponseEntity<Response> getResponse(@PathVariable Long responseId) {
+    public ResponseEntity<Response> getResponse(@PathVariable Long responseId, @PathVariable Long userId) {
         Response response = responseService.getUserResponse(responseId);
         return ResponseEntity.ok(response);
     }

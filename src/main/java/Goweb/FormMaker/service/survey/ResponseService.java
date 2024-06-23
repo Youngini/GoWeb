@@ -1,9 +1,9 @@
 package Goweb.FormMaker.service.survey;
 
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
-import Goweb.FormMaker.dto.survey.CreateResponseOptionDto;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
+import Goweb.FormMaker.exception.ResourceNotFoundException;
 import Goweb.FormMaker.exception.ResponseNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
@@ -36,40 +36,46 @@ public class ResponseService {
     }
 
     @Transactional
-    public Response createResponse(CreateResponseDto createResponseDto) {
-        // 사용자 조회
-        User user = userRepository.findById(createResponseDto.getUserId())
-                .orElseThrow(() -> new IllegalArgumentException("User not found"));
+    public Response createResponse(Long surveyId, Long userId, List<CreateResponseDto> createResponseDtos) {
+        Response savedResponse = null;
+        for (CreateResponseDto createResponseDto : createResponseDtos) {
+            // 질문 가져오기
+            Question question = questionRepository.findById(createResponseDto.getQuestionId())
+                    .orElseThrow(() -> new ResourceNotFoundException("Question not found"));
 
-        // 설문조사 조회
-        Survey survey = surveyRepository.findById(createResponseDto.getSurveyId())
-                 .orElseThrow(() -> new IllegalArgumentException("Survey not found"));
+            Response response = new Response();
 
-        // 질문 조회
-        Question question = questionRepository.findById(createResponseDto.getQuestionId())
-                 .orElseThrow(() -> new IllegalArgumentException("Question not found"));
+            // 사용자 설정
+            response.setUser(userRepository.findById(userId)
+                    .orElseThrow(() -> new ResourceNotFoundException("User not found")));
 
-        // Response 생성
-        Response response = new Response();
-        response.setUser(user);
-        response.setSurvey(survey);
-        response.setQuestion(question);
-        response.setAnswer(createResponseDto.getAnswer());
+            // 설문조사 연결
+            response.setSurvey(surveyRepository.findById(surveyId)
+                    .orElseThrow(() -> new ResourceNotFoundException("Survey not found")));
 
-        // ResponseOption 생성 및 설정
-        Set<ResponseOption> responseOptions = new HashSet<>();
-        for (CreateResponseOptionDto createResponseOptionDto : createResponseDto.getResponseOptions()) {
-            Option option = optionRepository.findById(createResponseOptionDto.getOptionId())
-                    .orElseThrow(() -> new IllegalArgumentException("Option not found"));
-            ResponseOption responseOption = new ResponseOption();
-            responseOption.setResponse(response);
-            responseOption.setOption(option);
-            responseOptions.add(responseOption);
+            // 질문 연결
+            response.setQuestion(question);
+
+            // 선택지 연결
+            if (question.getOptions() == null || question.getOptions().isEmpty()) {
+                response.setAnswer(createResponseDto.getAnswer());
+            } else {
+                Set<ResponseOption> responseOptions = new HashSet<>();
+                for (Integer optionId : createResponseDto.getResponseOptions()) {
+                    ResponseOption responseOption = new ResponseOption();
+                    responseOption.setResponse(response);
+                    responseOption.setOption(question.getOptions().stream()
+                            .filter(o -> o.getId().equals(optionId))
+                            .findFirst()
+                            .orElseThrow(() -> new ResourceNotFoundException("Option not found")));
+
+                    responseOptions.add(responseOption);
+                }
+                response.setResponseOptions(responseOptions);
+            }
+            savedResponse = responseRepository.save(response);
         }
-        response.setResponseOptions(responseOptions);
-
-        // 저장
-        return responseRepository.save(response);
+        return savedResponse;
     }
 
     @Transactional
@@ -122,7 +128,6 @@ public class ResponseService {
         // 저장
         return responseRepository.save(response);
     }
-
 
 }
 
