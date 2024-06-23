@@ -20,4 +20,6 @@ public interface ResponseRepository extends JpaRepository<Response,Long> {
     List<Response> findByQuestionId(Long id);
 
     Optional<Response> findBySurveyIdAndUserId(Long surveyId, Long userId);
+
+    List<Response> findBySurvey(Survey survey);
 }

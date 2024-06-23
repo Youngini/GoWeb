@@ -14,10 +14,7 @@ import Goweb.FormMaker.dto.survey.updateSurvey.UpdateQuestionDto;
 import Goweb.FormMaker.dto.survey.updateSurvey.UpdateSurveyDto;
 import Goweb.FormMaker.exception.ResourceNotFoundException;
 import Goweb.FormMaker.exception.SurveyNotFoundException;
-import Goweb.FormMaker.repository.survey.OptionRepository;
-import Goweb.FormMaker.repository.survey.QuestionRepository;
-import Goweb.FormMaker.repository.survey.SurveyParticipationRepository;
-import Goweb.FormMaker.repository.survey.SurveyRepository;
+import Goweb.FormMaker.repository.survey.*;
 import Goweb.FormMaker.repository.user.UserRepository;
 import jakarta.persistence.EntityNotFoundException;
 import jakarta.transaction.Transactional;
@@ -33,13 +30,15 @@ public class SurveyService {
     private final OptionRepository optionRepository;
     private final UserRepository userRepository;
     private final SurveyParticipationRepository surveyParticipationRepository;
+    private final ResponseRepository responseRepository;
 
-    public SurveyService(SurveyRepository surveyRepository, QuestionRepository questionRepository, OptionRepository optionRepository, UserRepository userRepository, SurveyParticipationRepository surveyParticipationRepository) {
+    public SurveyService(SurveyRepository surveyRepository, QuestionRepository questionRepository, OptionRepository optionRepository, UserRepository userRepository, SurveyParticipationRepository surveyParticipationRepository, ResponseRepository responseRepository) {
         this.surveyRepository = surveyRepository;
         this.questionRepository = questionRepository;
         this.optionRepository = optionRepository;
         this.userRepository = userRepository;
         this.surveyParticipationRepository = surveyParticipationRepository;
+        this.responseRepository = responseRepository;
     }
 
     @Transactional
@@ -156,8 +155,19 @@ public class SurveyService {
     public void deleteSurvey(Long surveyId) {
         Survey survey = surveyRepository.findById(surveyId)
                 .orElseThrow(() -> new EntityNotFoundException("Survey not found"));
+
+        // 1. Response 테이블의 데이터 삭제
+        List<Response> responses = responseRepository.findBySurvey(survey);
+        responseRepository.deleteAll(responses);
+
+        // 2. Question 테이블의 데이터 삭제
+        List<Question> questions = questionRepository.findBySurvey(survey);
+        questionRepository.deleteAll(questions);
+
+        // 3. Survey 테이블의 데이터 삭제
         surveyRepository.delete(survey);
     }
+
     
     //  excel
     @Transactional

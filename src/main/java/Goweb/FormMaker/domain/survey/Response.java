@@ -29,7 +29,7 @@ public class Response {
     @JoinColumn(name = "survey_id")
     private Survey survey;
 
-    @OneToOne
+    @ManyToOne
     @JoinColumn(name = "question_id")
     private Question question;
 
@@ -37,7 +37,7 @@ public class Response {
 
 /*    @OneToMany
     @JoinColumn(name = "option_id")
-    private List<Option> options;*/
+    private List<Option> options; */
 
     @OneToMany(mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResponseOption> responseOptions;

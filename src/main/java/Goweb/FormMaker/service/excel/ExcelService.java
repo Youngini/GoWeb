@@ -91,21 +91,24 @@ public class ExcelService {
             Row row = sheet.createRow(rowIndex++);
             Survey survey = surveyRepository.getReferenceById(surveyId);
             List<Response> responses = responseRepository.findBySurveyAndUser(survey, user);
-
+            System.out.println(user.toString());
             row.createCell(1).setCellValue(user.getName());
             row.createCell(2).setCellValue(user.getStudentNumber());
 
             int j = 3;
             for (Response response : responses) {
+                System.out.println(response.toString());
                 row.createCell(0).setCellValue(response.getUpdatedAt());
 
                 if (response.getAnswer() != null)
                     row.createCell(j++).setCellValue(response.getAnswer());
+
                 else{
                     String responseOptionNames = response.getResponseOptions().stream()
                             .map(ResponseOption::getOption)
                             .map(Option::getName)
                             .collect(Collectors.joining(", "));
+                    System.out.println(responseOptionNames);
                     row.createCell(j++).setCellValue(responseOptionNames);
                 }
             }
