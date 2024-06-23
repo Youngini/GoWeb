@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Modal from 'react-modal';
+import '../components/style/HomePage.css';
 
 const HomePage = () => {
     const navigate = useNavigate();
