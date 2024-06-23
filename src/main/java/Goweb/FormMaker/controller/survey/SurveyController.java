@@ -31,6 +31,13 @@ public class SurveyController {
         return new ResponseEntity<>(savedSurvey, HttpStatus.CREATED);
     }
 
+/*    @PutMapping("/{surveyId}")
+    @Operation(summary = "설문조사 내용 수정")
+    public ResponseEntity<Survey> uspdateSurvey(@PathVariable Long surveyId){
+        Survey updatedSurvey = surveyService.updateSurvey();
+        return new ResponseEntity<>(updatedSurvey, HttpStatus.CREATED);
+    }*/
+
     @GetMapping
     @Operation(summary = "설문조사 리스트 불러오기")
     public ResponseEntity<List<SurveyListDto>> getSurveys() {

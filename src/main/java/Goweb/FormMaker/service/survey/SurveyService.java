@@ -124,6 +124,7 @@ public class SurveyService {
         }
 
         SurveyDto.setTitle(survey.getTitle());
+        SurveyDto.setDescription(survey.getDescription());
         SurveyDto.setStartDate(survey.getStartDate());
         SurveyDto.setDueDate(survey.getDueDate());
         SurveyDto.setActivation(survey.isActivation());
