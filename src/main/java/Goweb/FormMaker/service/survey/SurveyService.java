@@ -139,7 +139,12 @@ public class SurveyService {
     public void activateSurvey(Long surveyId) {
         Survey survey = surveyRepository.findById(surveyId)
                 .orElseThrow(() -> new EntityNotFoundException("Survey not found"));
-        survey.setActivation(true);
+        if(survey.isActivation()) {
+            survey.setActivation(false);
+        }
+        else{
+            survey.setActivation(true);
+        }
         surveyRepository.save(survey);
     }
 
