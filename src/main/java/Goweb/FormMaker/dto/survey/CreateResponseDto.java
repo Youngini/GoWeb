@@ -11,6 +11,6 @@ public class CreateResponseDto {
 
     private Long questionId;
     private String answer;
-    private Set<Integer> responseOptions; // optionId
+    private Set<Long> responseOptions; // optionId
 
 }

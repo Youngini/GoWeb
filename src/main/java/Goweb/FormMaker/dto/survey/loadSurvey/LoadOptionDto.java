@@ -1,4 +1,4 @@
-package Goweb.FormMaker.dto.survey.LoadSurveyUserResponse;
+package Goweb.FormMaker.dto.survey.loadSurvey;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -11,4 +11,5 @@ public class LoadOptionDto {
     private String name;
     private Integer num;
     private String imageUrl;
+
 }

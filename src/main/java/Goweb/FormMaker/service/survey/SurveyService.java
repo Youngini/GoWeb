@@ -3,11 +3,12 @@ package Goweb.FormMaker.service.survey;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.dto.survey.*;
-import Goweb.FormMaker.dto.survey.CreateSurvey.CreateOptionDto;
-import Goweb.FormMaker.dto.survey.CreateSurvey.CreateQuestionDto;
-import Goweb.FormMaker.dto.survey.CreateSurvey.CreateSurveyDto;
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadOptionDto;
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadQuestionDto;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateOptionDto;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateQuestionDto;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateSurveyDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadOptionDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadQuestionDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadSurveyDto;
 import Goweb.FormMaker.exception.SurveyNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
@@ -101,24 +102,25 @@ public class SurveyService {
 
         for(Question question : survey.getQuestions()) {
             LoadQuestionDto dto = new LoadQuestionDto();
+            dto.setQuestionId(question.getId());
             dto.setContent(question.getContent());
             dto.setNum(question.getNum());
             dto.setQuestionType(question.getQuestionType());
             dto.setImageUrl(question.getImageUrl());
 
-            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            List<LoadOptionDto> OptionDtos = new ArrayList<>();
             for(Option option : question.getOptions()) {
                 LoadOptionDto dto2 = new LoadOptionDto();
+                dto2.setOptionId(option.getId());
                 dto2.setName(option.getName());
                 dto2.setNum(option.getNum());
                 dto2.setImageUrl(option.getImageUrl());
 
-                loadOptionDtos.add(dto2);
+                OptionDtos.add(dto2);
             }
-            dto.setOptions(loadOptionDtos);
+            dto.setOptions(OptionDtos);
 
             QuestionDtos.add(dto);
-
         }
 
         SurveyDto.setTitle(survey.getTitle());

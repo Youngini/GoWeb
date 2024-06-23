@@ -3,11 +3,13 @@ package Goweb.FormMaker.service.survey;
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadOptionDto;
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadQuestionDto;
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadUserSurvey;
+import Goweb.FormMaker.dto.survey.surveyResponses.SurveyResponseDto;
+import Goweb.FormMaker.dto.survey.surveyResponses.SurveyQuestionDto;
+import Goweb.FormMaker.dto.survey.surveyResponses.UserResponseDto;
+import Goweb.FormMaker.dto.survey.userResponse.UserOptionDto;
+import Goweb.FormMaker.dto.survey.userResponse.UserQuestionDto;
+import Goweb.FormMaker.dto.survey.userResponse.UserSurveyDto;
 import Goweb.FormMaker.exception.ResourceNotFoundException;
-import Goweb.FormMaker.exception.ResponseNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
 import Goweb.FormMaker.repository.survey.ResponseRepository;
@@ -17,9 +19,7 @@ import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 import java.util.stream.Collectors;
 
 @Service
@@ -42,6 +42,10 @@ public class ResponseService {
 
     @Transactional
     public Response createResponse(Long surveyId, Long userId, List<CreateResponseDto> createResponseDtos) {
+        SurveyParticipation surveyParticipation = new SurveyParticipation();
+        surveyParticipation.setSurvey(surveyRepository.findById(surveyId).get());
+        surveyParticipation.setUser(userRepository.findById(userId).get());
+
         Response savedResponse = null;
         for (CreateResponseDto createResponseDto : createResponseDtos) {
             // 질문 가져오기
@@ -65,25 +69,20 @@ public class ResponseService {
             if (question.getOptions() == null || question.getOptions().isEmpty()) {
                 response.setAnswer(createResponseDto.getAnswer());
             } else {
-                Set<ResponseOption> responseOptions = new HashSet<>();
-                for (Integer optionId : createResponseDto.getResponseOptions()) {
-                    ResponseOption responseOption = new ResponseOption();
-                    responseOption.setResponse(response);
-                    responseOption.setOption(question.getOptions().stream()
-                            .filter(o -> o.getId().equals(optionId))
-                            .findFirst()
-                            .orElseThrow(() -> new ResourceNotFoundException("Option not found")));
-
-                    responseOptions.add(responseOption);
+                List<Option> Options = new ArrayList<>();
+                for (Long optionId : createResponseDto.getResponseOptions()) {
+                    Option option = optionRepository.getReferenceById(optionId);
+                    Options.add(option);
                 }
-                response.setResponseOptions(responseOptions);
+                response.setOptions(Options);
             }
             savedResponse = responseRepository.save(response);
         }
         return savedResponse;
     }
 
-    public LoadUserSurvey getUserResponse(Long surveyId, Long userId) {
+    @Transactional
+    public UserSurveyDto getUserResponse(Long surveyId, Long userId) {
         Survey survey = surveyRepository.findById(surveyId)
                 .orElseThrow(() -> new ResourceNotFoundException("Survey not found"));
 
@@ -93,55 +92,90 @@ public class ResponseService {
         List<Response> responses = responseRepository.findBySurveyAndUser(survey, user);
 
         // 설문 조사 정보
-        LoadUserSurvey loadUserSurvey = new LoadUserSurvey();
-        loadUserSurvey.setTitle(survey.getTitle());
-        loadUserSurvey.setDescription(survey.getDescription());
-        loadUserSurvey.setStartDate(survey.getStartDate());
-        loadUserSurvey.setDueDate(survey.getDueDate());
-        loadUserSurvey.setHashtag(survey.getHashtag());
+        UserSurveyDto userSurveyDto = new UserSurveyDto();
+        userSurveyDto.setTitle(survey.getTitle());
+        userSurveyDto.setDescription(survey.getDescription());
+        userSurveyDto.setStartDate(survey.getStartDate());
+        userSurveyDto.setDueDate(survey.getDueDate());
+        userSurveyDto.setHashtag(survey.getHashtag());
 
         // 질문들 설정
-        List<LoadQuestionDto> loadQuestionDtos = new ArrayList<>();
+        List<UserQuestionDto> userQuestionDtos = new ArrayList<>();
         for (Response response : responses) {
             Question question = response.getQuestion();
-            LoadQuestionDto loadQuestionDto = new LoadQuestionDto();
-            loadQuestionDto.setQuestionId(question.getId());
-            loadQuestionDto.setNum(question.getNum());
-            loadQuestionDto.setContent(question.getContent());
-            loadQuestionDto.setQuestionType(question.getQuestionType());
-            loadQuestionDto.setImageUrl(question.getImageUrl());
+            UserQuestionDto userQuestionDto = new UserQuestionDto();
+            userQuestionDto.setQuestionId(question.getId());
+            userQuestionDto.setNum(question.getNum());
+            userQuestionDto.setContent(question.getContent());
+            userQuestionDto.setQuestionType(question.getQuestionType());
+            userQuestionDto.setImageUrl(question.getImageUrl());
 
             //질문 내 옵션 설정
-            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            List<UserOptionDto> userOptionDtos = new ArrayList<>();
             for (Option option : question.getOptions()) {
-                LoadOptionDto loadOptionDto = new LoadOptionDto();
-                loadOptionDto.setOptionId(option.getId());
-                loadOptionDto.setName(option.getName());
-                loadOptionDto.setNum(option.getNum());
-                loadOptionDto.setImageUrl(option.getImageUrl());
-                loadOptionDtos.add(loadOptionDto);
+                UserOptionDto userOptionDto = new UserOptionDto();
+                userOptionDto.setOptionId(option.getId());
+                userOptionDto.setName(option.getName());
+                userOptionDto.setNum(option.getNum());
+                userOptionDto.setImageUrl(option.getImageUrl());
+                userOptionDtos.add(userOptionDto);
             }
-            loadQuestionDto.setOptions(loadOptionDtos);
+            userQuestionDto.setOptions(userOptionDtos);
 
             // 사용자가 선택한 질문
-            List<Long> selectedOptionIds = response.getResponseOptions().stream()
-                    .map(ro -> ro.getOption().getId())
+            List<Long> selectedOptionIds = response.getOptions().stream()
+                    .map(Option::getId)
                     .collect(Collectors.toList());
-            loadQuestionDto.setSelectedOptionIds(selectedOptionIds);
+            userQuestionDto.setSelectedOptionIds(selectedOptionIds);
 
-            loadQuestionDtos.add(loadQuestionDto);
+            userQuestionDtos.add(userQuestionDto);
         }
 
-        loadUserSurvey.setQuestions(loadQuestionDtos);
-        return loadUserSurvey;
+        userSurveyDto.setQuestions(userQuestionDtos);
+        return userSurveyDto;
     }
-
 
     @Transactional
-    public List<Response> getSurveyResponse(Long surveyId) {
-        return responseRepository.findBySurveyId(surveyId);
-    }
+    public SurveyResponseDto getSurveyResponse(Long surveyId) {
+        Survey survey = surveyRepository.findById(surveyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Survey not found with id: " + surveyId));
 
+        SurveyResponseDto surveyResponseDto = new SurveyResponseDto();
+        surveyResponseDto.setTitle(survey.getTitle());
+        surveyResponseDto.setDescription(survey.getDescription());
+        surveyResponseDto.setStartDate(survey.getStartDate());
+        surveyResponseDto.setDueDate(survey.getDueDate());
+        surveyResponseDto.setActivation(survey.isActivation());
+        surveyResponseDto.setHashtag(survey.getHashtag());
+
+        List<SurveyQuestionDto> surveyQuestionDtos = new ArrayList<>();
+        for (Question question : survey.getQuestions()) {
+            SurveyQuestionDto surveyQuestionDto = new SurveyQuestionDto();
+            surveyQuestionDto.setQuestionId(question.getId());
+            surveyQuestionDto.setNum(question.getNum());
+            surveyQuestionDto.setContent(question.getContent());
+            surveyQuestionDto.setQuestionType(question.getQuestionType());
+            surveyQuestionDto.setImageUrl(question.getImageUrl());
+
+            List<UserResponseDto> userResponseDtos = new ArrayList<>();
+
+            for (Response response : responseRepository.findByQuestionId(question.getId())) {
+                UserResponseDto userResponseDto = new UserResponseDto();
+                userResponseDto.setStudentId(response.getUser().getId());
+                userResponseDto.setStudentName(response.getUser().getName());
+                userResponseDto.setResponse(response.getOptions().stream()
+                        .map(Option::getName)
+                        .collect(Collectors.toList()));
+                userResponseDtos.add(userResponseDto);
+            }
+            surveyQuestionDto.setSelectedOptions(userResponseDtos);
+            surveyQuestionDtos.add(surveyQuestionDto);
+        }
+        surveyResponseDto.setQuestions(surveyQuestionDtos);
+
+        return surveyResponseDto;
+    }
+    
     /*@Transactional
     public Response updateResponse(Long responseId, CreateResponseDto createResponseDto) {
         // 기존 Response 조회

@@ -1,14 +1,13 @@
-package Goweb.FormMaker.dto.survey;
+package Goweb.FormMaker.dto.survey.loadSurvey;
 
-import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadQuestionDto;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.time.LocalDate;
 import java.util.List;
 
-@Getter
 @Setter
+@Getter
 public class LoadSurveyDto {
 
     private String title;
