@@ -1,4 +1,32 @@
 .surveypageContent {
-    display : flex;
+    display: flex;
     flex-direction: row;
+    /* border: 1px solid aqua; */
+    position: relative;
+}
+
+.hashCategory {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.FormList {
+    width: 68vw;
+    position: absolute;
+    top: 10px;
+    left: 14vw;
+    background-color: #EAA0A0;
+    border: 1px solid #EAA0A0;
+    border-radius: 20px;
+}
+
+.path-Category {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 15vw;
+    background-color: #EAA0A0;
+    border: 1px solid #EAA0A0;
+    border-radius: 20px;
 }
