@@ -227,47 +227,119 @@ const SurveyForm = ({token}) => {
 
 
     const handleSubmit = async () => {
-        const data = {
-            title,
-            description,
-            startDate,
-            dueDate: endDate,
-            activation,
-            hashtag : category,
-            questions: questions.map((question, index) => ({
-                order: index,
-                content: question.content,
-                questionType: question.type,
-                imageUrl: '',
-                options: question.options.map((option, optIndex) => ({
-                    name: option,
-                    order: optIndex,
+        if(!isAdminSurveyDetail){
+            const data = {
+                title,
+                description,
+                startDate,
+                dueDate: endDate,
+                activation,
+                hashtag : category,
+                questions: questions.map((question, index) => ({
+                    order: index,
+                    content: question.content,
+                    questionType: question.type,
                     imageUrl: '',
+                    options: question.options.map((option, optIndex) => ({
+                        name: option,
+                        order: optIndex,
+                        imageUrl: '',
+                    })),
                 })),
-            })),
-        };
+            };
 
-        try {
-            const response = await fetch(`${ApiAddress}/surveys`, {
-                method: 'POST', 
-                
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify(data),
-            });
-            console.log(data)
+            try {
+                const response = await fetch(`${ApiAddress}/surveys`, {
+                    method: 'POST', 
+                    
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(data),
+                });
+                console.log(data)
 
-            if (response.ok) {
-                console.log('Survey submitted successfully');
-                alert('설문조사가 등록되었습니다.')
-                navigate(`/AdminSurvey/${token}`)
-            } else {
-                console.error('Failed to submit survey');
+                if (response.ok) {
+                    console.log('Survey submitted successfully');
+                    alert('설문조사가 등록되었습니다.')
+                    navigate(`/AdminSurvey/${token}`)
+                } else {
+                    console.error('Failed to submit survey');
+                }
+            } catch (error) {
+                console.error('Error submitting survey:', error);
             }
-        } catch (error) {
-            console.error('Error submitting survey:', error);
+        } else{
+            const data = {
+                title,
+                description,
+                startDate,
+                dueDate: endDate,
+                activation,
+                hashtag : category,
+                questions: questions.map((question, index) => ({
+                    order: index,
+                    content: question.content,
+                    questionType: question.type,
+                    imageUrl: '',
+                    options: question.options.map((option, optIndex) => ({
+                        name: option,
+                        order: optIndex,
+                        imageUrl: '',
+                    })),
+                })),
+            };
+
+            try {
+                const response = await fetch(`${ApiAddress}/surveys/${surveyId}`, {
+                    method: 'PUT', 
+                    
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`
+                    },
+                    body: JSON.stringify(data),
+                });
+                console.log(data)
+
+                if (response.ok) {
+                    console.log('Survey submitted successfully');
+                    alert('설문조사가 수정되었습니다.')
+                    navigate(`/AdminSurveyDetail/${token}/${surveyId}`)
+                } else {
+                    console.error('Failed to submit survey');
+                    alert('설문조사 수정 실패')
+                }
+            } catch (error) {
+                alert('설문조사 수정 실패')
+                console.error('Error submitting survey:', error);
+            } 
+        }
+    };
+
+    const handleDelete = async () => {
+        const isConfirmed = window.confirm('정말로 설문을 삭제하시겠습니까?');
+        if (isConfirmed) {
+            try {
+                const response = await fetch(`${ApiAddress}/surveys/${surveyId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${localStorage.getItem("token")}`
+                    }
+                });
+    
+                if (!response.ok) {
+                    throw new Error('Network response was not ok');
+                }
+    
+                alert('설문이 삭제되었습니다.');
+                navigate(-1)
+                // 필요한 경우 추가적인 후속 작업을 여기에 추가
+            } catch (error) {
+                console.error('Error deleting survey:', error);
+                alert('설문 삭제에 실패하였습니다.');
+            }
         }
     };
 
@@ -282,7 +354,7 @@ const SurveyForm = ({token}) => {
                         onChange={handleTitle}
                         ></input>
                     <button className="submitbutton" onClick={handleSubmit}>확인</button>
-                    {isAdminSurveyDetail && <button className="deletebutton">삭제</button>}
+                    {isAdminSurveyDetail && <button onClick={handleDelete} className="deletebutton">삭제</button>}
                 </div>
                 <div>
                     <input 
