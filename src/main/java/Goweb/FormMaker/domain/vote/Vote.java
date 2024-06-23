@@ -27,7 +27,6 @@ public class Vote {
 
     @OneToMany(mappedBy = "vote", cascade = CascadeType.ALL)
     private List<Candidate> candidates = new ArrayList<>();
-
     @Column(nullable = false)
     private LocalDate startDate;
 

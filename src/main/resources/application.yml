@@ -11,6 +11,7 @@ spring:
       max-request-size: 15MB
   config:
     additional-location: classpath:application-secret.yml
+
 logging:
   level:
     org.hibernate.SQL: DEBUG

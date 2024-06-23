@@ -1,9 +1,6 @@
 package Goweb.FormMaker.controller.user;
 
-import Goweb.FormMaker.dto.auth.JoinRequestDTO;
-import Goweb.FormMaker.dto.auth.LoginRequestDTO;
-import Goweb.FormMaker.dto.auth.LoginSuccessDTO;
-import Goweb.FormMaker.dto.auth.findPasswordDTO;
+import Goweb.FormMaker.dto.auth.*;
 import Goweb.FormMaker.service.user.UserService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -38,4 +35,11 @@ public class UserController {
         System.out.println(joinRequestDTO.toString());
         return userService.join(joinRequestDTO);
     }
+
+    @PostMapping("/adjoin")
+    public LoginSuccessDTO adminjoin(@RequestBody @Valid JoinAdminRequestDTO joinAdminRequestDTO) {
+        System.out.println(joinAdminRequestDTO.toString());
+        return userService.adjoin(joinAdminRequestDTO);
+    }
+
 }

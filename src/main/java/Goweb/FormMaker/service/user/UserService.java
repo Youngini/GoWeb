@@ -1,6 +1,7 @@
 package Goweb.FormMaker.service.user;
 
 
+import Goweb.FormMaker.dto.auth.JoinAdminRequestDTO;
 import Goweb.FormMaker.dto.auth.JoinRequestDTO;
 import Goweb.FormMaker.dto.auth.LoginSuccessDTO;
 import Goweb.FormMaker.dto.auth.findPasswordDTO;
@@ -38,6 +39,14 @@ public class UserService {
     public LoginSuccessDTO join(JoinRequestDTO userJoinRequestDTO) {
         checkDuplicateStudentNumber(userJoinRequestDTO.getStudentNumber());
         User user = User.createFromJoin(userJoinRequestDTO, encoder);
+        userRepository.save(user);
+        return JwtUtil.createTokens(user);
+    }
+
+    @Transactional
+    public LoginSuccessDTO adjoin(JoinAdminRequestDTO joinAdminRequestDTO) {
+        checkDuplicateStudentNumber(joinAdminRequestDTO.getStudentNumber());
+        User user = User.createAdminFromJoin(joinAdminRequestDTO, encoder);
         userRepository.save(user);
         return JwtUtil.createTokens(user);
     }
