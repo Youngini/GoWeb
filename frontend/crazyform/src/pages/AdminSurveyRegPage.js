@@ -19,28 +19,20 @@ const AdminSurveyReg = () => {
       }
   }, [navigate]);
 
-    return(
-        <div>
-            <AdminTopNavbar />
-            <div className="surveydetailpageContent">
-                <div className="buttonContent">
-                    <div className={'buttonWrap'}>
-                        김영인
-                    </div>
-                    <div className={'buttonWrap'}>
-                        김현수 
-                    </div>
-                    <div className={'buttonWrap'}>
-                        윤진노
-                    </div>
-                    <div className={'buttonWrap'}>
-                        정지원
-                    </div>
-                </div>
-                    <SurveyForm token={token} />
-            </div>
+  return (
+    <div>
+      <AdminTopNavbar />
+      <div className="surveydetailpageContent">
+        <div className="buttonContent">
+          <div className={"buttonWrap"}>김영인</div>
+          <div className={"buttonWrap"}>김현수</div>
+          <div className={"buttonWrap"}>윤진노</div>
+          <div className={"buttonWrap"}>정지원</div>
         </div>
-    )
-}
+        <SurveyForm />
+      </div>
+    </div>
+  );
+};
 
-export default AdminSurveyReg
+export default AdminSurveyReg;
