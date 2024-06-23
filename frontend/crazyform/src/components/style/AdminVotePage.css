@@ -1,0 +1,27 @@
+.content-Wrapper {
+  display : flex;
+  flex-direction: row;
+  justify-content: center;
+  /* border: 1px solid aqua; */
+  background-color: #EAA0A0;
+  position : relative;
+}
+
+.voteList{
+  position: absolute;
+  top: 10px;
+  right : 17vw;
+  background-color: #EAA0A0;
+  border: 1px solid #EAA0A0;
+  border-radius : 20px;
+}
+
+.pathCategory {
+  position: absolute;
+  width : 15vw;
+  top : 10px;
+  right : 10px;
+  background-color: #EAA0A0;
+  border: 1px solid #EAA0A0;
+  border-radius : 20px;
+}
