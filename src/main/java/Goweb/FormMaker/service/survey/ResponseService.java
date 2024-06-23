@@ -3,6 +3,9 @@ package Goweb.FormMaker.service.survey;
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
+import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadOptionDto;
+import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadQuestionDto;
+import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadUserSurvey;
 import Goweb.FormMaker.exception.ResourceNotFoundException;
 import Goweb.FormMaker.exception.ResponseNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
@@ -13,9 +16,11 @@ import Goweb.FormMaker.repository.user.UserRepository;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class ResponseService {
@@ -78,18 +83,66 @@ public class ResponseService {
         return savedResponse;
     }
 
-    @Transactional
-    public Response getUserResponse(Long responseId) {
-        return responseRepository.findById(responseId)
-                .orElseThrow(() -> new ResponseNotFoundException(responseId));
+    public LoadUserSurvey getUserResponse(Long surveyId, Long userId) {
+        Survey survey = surveyRepository.findById(surveyId)
+                .orElseThrow(() -> new ResourceNotFoundException("Survey not found"));
+
+        User user = userRepository.findById(userId)
+                .orElseThrow(() -> new ResourceNotFoundException("User not found"));
+
+        List<Response> responses = responseRepository.findBySurveyAndUser(survey, user);
+
+        // 설문 조사 정보
+        LoadUserSurvey loadUserSurvey = new LoadUserSurvey();
+        loadUserSurvey.setTitle(survey.getTitle());
+        loadUserSurvey.setDescription(survey.getDescription());
+        loadUserSurvey.setStartDate(survey.getStartDate());
+        loadUserSurvey.setDueDate(survey.getDueDate());
+        loadUserSurvey.setHashtag(survey.getHashtag());
+
+        // 질문들 설정
+        List<LoadQuestionDto> loadQuestionDtos = new ArrayList<>();
+        for (Response response : responses) {
+            Question question = response.getQuestion();
+            LoadQuestionDto loadQuestionDto = new LoadQuestionDto();
+            loadQuestionDto.setQuestionId(question.getId());
+            loadQuestionDto.setNum(question.getNum());
+            loadQuestionDto.setContent(question.getContent());
+            loadQuestionDto.setQuestionType(question.getQuestionType());
+            loadQuestionDto.setImageUrl(question.getImageUrl());
+
+            //질문 내 옵션 설정
+            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            for (Option option : question.getOptions()) {
+                LoadOptionDto loadOptionDto = new LoadOptionDto();
+                loadOptionDto.setOptionId(option.getId());
+                loadOptionDto.setName(option.getName());
+                loadOptionDto.setNum(option.getNum());
+                loadOptionDto.setImageUrl(option.getImageUrl());
+                loadOptionDtos.add(loadOptionDto);
+            }
+            loadQuestionDto.setOptions(loadOptionDtos);
+
+            // 사용자가 선택한 질문
+            List<Long> selectedOptionIds = response.getResponseOptions().stream()
+                    .map(ro -> ro.getOption().getId())
+                    .collect(Collectors.toList());
+            loadQuestionDto.setSelectedOptionIds(selectedOptionIds);
+
+            loadQuestionDtos.add(loadQuestionDto);
+        }
+
+        loadUserSurvey.setQuestions(loadQuestionDtos);
+        return loadUserSurvey;
     }
+
 
     @Transactional
     public List<Response> getSurveyResponse(Long surveyId) {
         return responseRepository.findBySurveyId(surveyId);
     }
 
-    @Transactional
+    /*@Transactional
     public Response updateResponse(Long responseId, CreateResponseDto createResponseDto) {
         // 기존 Response 조회
         Response response = responseRepository.findById(responseId)
@@ -127,7 +180,8 @@ public class ResponseService {
 
         // 저장
         return responseRepository.save(response);
-    }
+    }*/
+
 
 }
 

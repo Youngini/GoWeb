@@ -2,6 +2,7 @@ package Goweb.FormMaker.controller.survey;
 
 import Goweb.FormMaker.dto.survey.CreateResponseDto;
 import Goweb.FormMaker.domain.survey.Response;
+import Goweb.FormMaker.dto.survey.LoadSurveyUserResponse.LoadUserSurvey;
 import Goweb.FormMaker.service.survey.ResponseService;
 import io.swagger.v3.oas.annotations.Operation;
 import org.springframework.http.HttpStatus;
@@ -27,24 +28,24 @@ public class ResponseController {
     }
 
     @GetMapping("/user/{surveyId}/{userId}")
-    @Operation(summary = "특정 사용자 응답 가져오기")
-    public ResponseEntity<Response> getResponse(@PathVariable Long responseId, @PathVariable Long userId) {
-        Response response = responseService.getUserResponse(responseId);
-        return ResponseEntity.ok(response);
+    @Operation(summary = "특정 사용자 설문조사 가져오기")
+    public ResponseEntity<LoadUserSurvey> getUserResponse(@PathVariable Long surveyId, @PathVariable Long userId) {
+        LoadUserSurvey survey = responseService.getUserResponse(surveyId, userId);
+        return ResponseEntity.ok(survey);
     }
 
     @GetMapping("/survey/{surveyId}")
     @Operation(summary = "특정 설문조사의 모든 응답 가져오기")
-    public ResponseEntity<List<Response>> getSurveyResponse(@PathVariable Long surveyId) {
+    public ResponseEntity<List<Response>> getAllResponse(@PathVariable Long surveyId) {
         List<Response> responses = responseService.getSurveyResponse(surveyId);
         return ResponseEntity.ok(responses);
     }
 
-    @PutMapping("/{responseId}")
+/*    @PutMapping("/{responseId}")
     @Operation(summary = "특정 사용자 응답 수정하기")
     public ResponseEntity<Response> updateResponse(@PathVariable Long responseId, @RequestBody CreateResponseDto createResponseDto) {
         Response updatedResponse = responseService.updateResponse(responseId, createResponseDto);
         return ResponseEntity.ok(updatedResponse);
-    }
+    }*/
 }
 

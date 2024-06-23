@@ -1,13 +1,12 @@
-package Goweb.FormMaker.dto.survey;
+package Goweb.FormMaker.dto.survey.CreateSurvey;
 
 import lombok.Getter;
 import lombok.Setter;
 
 @Getter
 @Setter
-public class LoadOptionDto {
-
+public class CreateOptionDto {
     private String name;
-    private Integer num;
+    private int order;
     private String imageUrl;
 }

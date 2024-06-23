@@ -1,6 +1,6 @@
 package Goweb.FormMaker.controller.survey;
 
-import Goweb.FormMaker.dto.survey.CreateSurveyDto;
+import Goweb.FormMaker.dto.survey.CreateSurvey.CreateSurveyDto;
 import Goweb.FormMaker.dto.survey.LoadSurveyDto;
 import Goweb.FormMaker.dto.survey.SurveyListDto;
 import Goweb.FormMaker.domain.survey.Survey;
