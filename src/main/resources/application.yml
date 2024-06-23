@@ -2,7 +2,7 @@ spring:
   jpa:
     hibernate:
       database-platform: org.hibernate.dialect.MySQL8Dialect
-      ddl-auto: create
+      ddl-auto: update
       show_sql: true
   servlet:
     multipart:

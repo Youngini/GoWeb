@@ -45,6 +45,8 @@ dependencies {
 	implementation 'org.apache.poi:poi:5.2.2'                // .xls 확장자
 	implementation 'org.apache.poi:poi-ooxml:5.2.2'          // .xlsx 확장자
 
+	implementation 'javax.xml.bind:jaxb-api:2.3.1'
+
 }
 
 tasks.named('test') {
