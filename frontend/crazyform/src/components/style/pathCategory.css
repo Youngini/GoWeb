@@ -26,12 +26,85 @@
 }
 
 .link {
+  position: relative; /* Required to position the pseudo-element */
+  border: 3px solid black;
+  background-color: white;
+  width: 14vw;
+  margin-top: 10px;
+  border-radius: 5px;
+  line-height : 150px;
+  height: 150px;
+  font-size: 20px;
+  font-weight : 700;
+  text-align: center;
+  overflow: hidden; /* Ensure the pseudo-element doesn't overflow */
+}
+
+.link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0); /* Initial transparent background */
+  transition: background 0.4s ease-in-out;
+  z-index: 1;
+}
+
+.link:hover::before {
+  background: rgba(0, 0, 0, 0.2); /* Darkened and semi-transparent on hover */
+}
+
+.link:hover {
+  color: black;
+  border-radius: 30px;
+  height: 150px;
+  font-size: 25px;
+  font-weight: 900;
+  text-align: center;
+  transition: .4s;
+}
+
+.link * {
+  position: relative; /* Ensure text and children are above the pseudo-element */
+  z-index: 2;
+}
+
+/* 
+.link{
   border : 3px solid black;
   background-color: white;
-  width : 90%;
+  width : 14vw;
   margin-top : 10px;
   border-radius: 5px;
   height: 150px;
   font-size : 20px;
   text-align: center;
+}
+
+.link:hover {
+  color : black;
+  border-radius: 30px;
+  height: 150px;
+  font-size : 25px;
+  font-weight : 700;
+  text-align: center;
+  transition: .4s;
+} */
+
+.kpLearningPage{
+  background-image: url('../../../public/images/KNU_LMS.png');
+}
+
+.kpMainPage{
+  background-image: url('../../../public/images/KNU_MAINPAGE.png');
+}
+
+.cseMainPage {
+  background-image: url('../../../public/images/CSE_MAIN.png');
+}
+
+.cseNoticePage {
+  background-image: url('../../../public/images/CSE_NOTICE.png');
 }
