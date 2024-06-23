@@ -4,13 +4,17 @@ import './style/FormList.css';
 import { useNavigate } from 'react-router-dom';
 import { ApiAddress } from '../constants';
 
-export default function FormList({ activeCategory }) {
+export default function FormList({ activeCategory, token}) {
   const [forms, setForms] = useState([]);
 
   useEffect(() => {
     async function fetchForms() {
       try {
-        const response = await fetch(`${ApiAddress}/surveys`);
+        const response = await fetch(`${ApiAddress}/surveys`, {
+          headers: {
+            'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+        });
         const data = await response.json();
         setForms(data);
       } catch (error) {
@@ -34,7 +38,7 @@ export default function FormList({ activeCategory }) {
           <div className='listCategory'># {activeCategory || '전체'}</div>
           <button 
             className='addSurveybutton'
-            onClick={() => navigate('/AdminSurveyReg')}
+            onClick={() => navigate(`/AdminSurveyReg/${token}`)}
           >설문조사 추가하기</button>
         </div>
         <div className='listCount'>{filteredForms.length}개의 항목</div>
