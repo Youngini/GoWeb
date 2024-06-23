@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React from "react";
 import AdminTopNavbar from "../components/AdminTopNavBar";
-import CategoryList from '../components/CategoryList';
-import FormList from "../components/FormList";
-import VoteList from '../components/VoteComponents/VoteList';
-import '../components/style/AdminVotePage.css';
+import VoteList from "../components/VoteComponents/VoteList";
+import "../components/style/AdminVotePage.css";
+import PathCategory from "../components/pathCategory";
 
 const AdminVotePage = () => {
-
   return (
     <div>
       {/* <Logo /> */}
       <AdminTopNavbar />
-      <VoteList />
+      <div className="content-Wrapper">
+        <div className="voteList">
+          <VoteList />
+        </div>
+        <div className="pathCategory">
+          <PathCategory />
+        </div>
+      </div>
     </div>
   );
 };

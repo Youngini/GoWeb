@@ -12,7 +12,7 @@ export default function VoteItem({formId, title}) {
       <div className="formTitle">{title}</div>
       <button className="showResponse">응답 보기</button>
       <button className="activeForm">폼 활성화</button>
-      <button className="deleteForm">삭제</button>
+      <button className="deleteForm">X</button>
     </div>
   );
 }

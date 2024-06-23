@@ -1,0 +1,29 @@
+.pathWrapper {
+  width : 100%;
+  display : flex;
+  flex-direction: column;
+  align-items: center;
+  /* border: 3px solid black; */
+}
+
+.pathtitle {
+  width : 90%;
+  text-align: center;
+  font-size : 30px;
+  margin-top : 10px;
+  margin-bottom: 15px;
+  background-color: white;
+  border-radius: 10px;
+  border : 1px solid white;
+}
+
+.link {
+  border : 3px solid black;
+  background-color: white;
+  width : 90%;
+  margin-top : 10px;
+  border-radius: 5px;
+  height: 150px;
+  font-size : 20px;
+  text-align: center;
+}

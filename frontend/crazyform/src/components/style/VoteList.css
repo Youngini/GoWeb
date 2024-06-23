@@ -13,9 +13,20 @@
     margin-bottom: 30px;
 }
 
+.listCount {
+    font-size : 20px;
+    width : 8vw;
+    text-align: center;
+    margin-left: 2vw;
+    border: 2px solid white;
+    border-radius: 10px;
+    background-color: white;
+}
+
 .addVotebutton {
     margin-top: 0.8vh;
     margin-left: 2vw;
+    margin-right : 1vw;
     width: 8vw;
     height: 4vh;
     border-radius: 1vh;
