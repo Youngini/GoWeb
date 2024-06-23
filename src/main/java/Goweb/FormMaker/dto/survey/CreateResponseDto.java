@@ -9,10 +9,8 @@ import java.util.Set;
 @Setter
 public class CreateResponseDto {
 
-    private Long userId;
-    private Long surveyId;
     private Long questionId;
     private String answer;
-    private Set<CreateResponseOptionDto> responseOptions;
+    private Set<Long> responseOptions; // optionId
 
 }

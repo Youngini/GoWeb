@@ -3,6 +3,12 @@ package Goweb.FormMaker.service.survey;
 import Goweb.FormMaker.domain.survey.*;
 import Goweb.FormMaker.domain.user.User;
 import Goweb.FormMaker.dto.survey.*;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateOptionDto;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateQuestionDto;
+import Goweb.FormMaker.dto.survey.createSurvey.CreateSurveyDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadOptionDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadQuestionDto;
+import Goweb.FormMaker.dto.survey.loadSurvey.LoadSurveyDto;
 import Goweb.FormMaker.exception.SurveyNotFoundException;
 import Goweb.FormMaker.repository.survey.OptionRepository;
 import Goweb.FormMaker.repository.survey.QuestionRepository;
@@ -96,27 +102,29 @@ public class SurveyService {
 
         for(Question question : survey.getQuestions()) {
             LoadQuestionDto dto = new LoadQuestionDto();
+            dto.setQuestionId(question.getId());
             dto.setContent(question.getContent());
             dto.setNum(question.getNum());
             dto.setQuestionType(question.getQuestionType());
             dto.setImageUrl(question.getImageUrl());
 
-            List<LoadOptionDto> loadOptionDtos = new ArrayList<>();
+            List<LoadOptionDto> OptionDtos = new ArrayList<>();
             for(Option option : question.getOptions()) {
                 LoadOptionDto dto2 = new LoadOptionDto();
+                dto2.setOptionId(option.getId());
                 dto2.setName(option.getName());
                 dto2.setNum(option.getNum());
                 dto2.setImageUrl(option.getImageUrl());
 
-                loadOptionDtos.add(dto2);
+                OptionDtos.add(dto2);
             }
-            dto.setOptions(loadOptionDtos);
+            dto.setOptions(OptionDtos);
 
             QuestionDtos.add(dto);
-
         }
 
         SurveyDto.setTitle(survey.getTitle());
+        SurveyDto.setDescription(survey.getDescription());
         SurveyDto.setStartDate(survey.getStartDate());
         SurveyDto.setDueDate(survey.getDueDate());
         SurveyDto.setActivation(survey.isActivation());
@@ -131,7 +139,12 @@ public class SurveyService {
     public void activateSurvey(Long surveyId) {
         Survey survey = surveyRepository.findById(surveyId)
                 .orElseThrow(() -> new EntityNotFoundException("Survey not found"));
-        survey.setActivation(true);
+        if(survey.isActivation()) {
+            survey.setActivation(false);
+        }
+        else{
+            survey.setActivation(true);
+        }
         surveyRepository.save(survey);
     }
 
@@ -141,7 +154,8 @@ public class SurveyService {
                 .orElseThrow(() -> new EntityNotFoundException("Survey not found"));
         surveyRepository.delete(survey);
     }
-
+    
+    //  excel
     @Transactional
     public List<ExcelSurveyResponse> getAllResponse(Long surveyId) {
         List<ExcelSurveyResponse> data = new ArrayList<>();

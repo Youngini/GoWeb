@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -33,6 +34,10 @@ public class Response {
 
     @Column(nullable = false)
     private String answer;
+
+/*    @OneToMany
+    @JoinColumn(name = "option_id")
+    private List<Option> options;*/
 
     @OneToMany(mappedBy = "response", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<ResponseOption> responseOptions;

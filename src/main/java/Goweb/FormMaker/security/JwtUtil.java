@@ -46,7 +46,7 @@ public class JwtUtil {
     public static LoginSuccessDTO createTokens(User user) {
         String accessToken = createToken(user, HOUR);
         String refreshToken = createToken(user, MONTH);
-        return new LoginSuccessDTO(accessToken, refreshToken);
+        return new LoginSuccessDTO(accessToken, refreshToken,user.getId());
     }
 
     private static String createToken(User user, Long expiredTime) {
