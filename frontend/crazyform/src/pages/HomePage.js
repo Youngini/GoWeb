@@ -1,11 +1,33 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import Modal from 'react-modal';
 
 const HomePage = () => {
     const navigate = useNavigate();
+    const [modalIsOpen, setModalIsOpen] = useState(false);
+    const [adminId, setAdminId] = useState('');
+    const [adminPassword, setAdminPassword] = useState('');
 
     const handleButtonClick = () => {
-        navigate('/AdminSurvey');
+        setModalIsOpen(true);
+    };
+
+    const handleButtonUserReg = () => {
+        navigate('/UserReg')
+    };
+
+    const closeModal = () => {
+        setModalIsOpen(false);
+    };
+
+    const handleConfirmClick = () => {
+        if (!adminId || !adminPassword){
+            alert('모든 정보를 입력하세요')
+        }
+        else{
+            navigate('/AdminSurvey');
+            closeModal();
+        }
     };
 
     const styles = {
@@ -105,11 +127,69 @@ const HomePage = () => {
                     <div style={styles.title}>컴퓨터학부 학생회 설문조사 페이지</div>
                     <div style={styles.buttonGroup}>
                         <button style={styles.primaryButton}>설문하러가기</button>
-                        <button style={{ ...styles.primaryButton, ...styles.primaryButtonLastChild }}>투표하러가기</button>
+                        <button style={styles.primaryButton}>투표하러가기</button>
+                        <button 
+                            style={{ ...styles.primaryButton, ...styles.primaryButtonLastChild }}
+                            onClick={handleButtonUserReg}
+                            >회원가입</button>
                     </div>
                 </div>
             
             </div>
+
+            <Modal
+                isOpen={modalIsOpen}
+                onRequestClose={closeModal}
+                contentLabel="Admin Login"
+                style={{
+                    content: {
+                        top: '50%',
+                        left: '50%',
+                        right: 'auto',
+                        bottom: 'auto',
+                        marginRight: '-50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 1000,
+                    },
+                    overlay: {
+                        backgroundColor: 'rgba(0, 0, 0, 0.75)',
+                        zIndex: 999, // Overlay의 zIndex 설정
+                    },
+                }}
+            >
+                <h2>관리자 로그인</h2>
+                <form>
+                    <label>
+                        <input
+                            type="text"
+                            value={adminId}
+                            onChange={(e) => setAdminId(e.target.value)}
+                            placeholder='학번'
+                            style={{
+                                marginBottom : '1vh'
+                            }}
+                        />
+                    </label>
+                    <br />
+                    <label>
+                        <input
+                            type="password"
+                            value={adminPassword}
+                            onChange={(e) => setAdminPassword(e.target.value)}
+                            placeholder='비밀번호'
+                            style={{
+                                marginBottom : '1vh'
+                            }}
+                        />
+                    </label>
+                    <br />
+                    <button type="button" onClick={handleConfirmClick}
+                    style={{
+                        marginRight : '1vw'
+                    }}>확인</button>
+                    <button type="button" onClick={closeModal}>취소</button>
+                </form>
+            </Modal>
         </div>
     );
 };

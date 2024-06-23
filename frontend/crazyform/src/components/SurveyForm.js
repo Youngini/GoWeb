@@ -1,6 +1,6 @@
 import { useState } from "react";
 import './style/SurveyForm.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate, useParams } from 'react-router-dom';
 import { DndProvider, useDrag, useDrop } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import { ApiAddress } from "../constants";
@@ -126,14 +126,15 @@ const Question = ({ question, onUpdate, onDelete, index, moveQuestion }) => {
     );
 };
 
-const SurveyForm = (id) => {
+const SurveyForm = () => {
     const [questions, setQuestions] = useState([{}]);
     const [title, setTitle] = useState('')
     const [category, setCategory] = useState('')
     const [description, setDescription] = useState('')
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
-    const [activation, setActivation] = useState(false); 
+    const [activation, setActivation] = useState(false);
+    const { id: surveyId } = useParams(); 
 
     const navigate = useNavigate();
 
@@ -187,11 +188,13 @@ const SurveyForm = (id) => {
     const location = useLocation();
     const isAdminSurveyDetail = location.pathname.includes('/AdminSurveyDetail');
 
+    
+
     useEffect(() => {
-        if (isAdminSurveyDetail && id) {
-            const fetchSurvey = async () => {
+        if (isAdminSurveyDetail && surveyId) {
+            const fetchSurvey = async (surveyId) => {
                 try {
-                    const response = await fetch(`${ApiAddress}/surveys/${id}`);
+                    const response = await fetch(`${ApiAddress}/surveys/${surveyId}`);
                     if (response.ok) {
                         const data = await response.json();
                         setTitle(data.title);
@@ -213,9 +216,9 @@ const SurveyForm = (id) => {
                 }
             };
 
-            fetchSurvey();
+            fetchSurvey(surveyId); // fetchSurvey 함수 호출
         }
-    }, [isAdminSurveyDetail, id]);
+    }, [isAdminSurveyDetail, surveyId]); 
 
 
     const handleSubmit = async () => {
@@ -241,7 +244,7 @@ const SurveyForm = (id) => {
 
         try {
             const response = await fetch(`${ApiAddress}/surveys`, {
-                method: 'POST',
+                method: 'POST', 
                 headers: {
                     'Content-Type': 'application/json',
                 },

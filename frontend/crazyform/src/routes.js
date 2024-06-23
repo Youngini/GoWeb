@@ -6,12 +6,17 @@ import AdminSurveyReg from "./pages/AdminSurveyRegPage";
 import AdminVotePage from "./pages/AdminVotePage";
 import AdminVoteRegPage from "./pages/AdminVoteRegPage";
 import HomePage from "./pages/HomePage";
+import UserReg from "./pages/UserRegPage";
 
 
 const routes = [
   {
     path: "/",
     component: HomePage
+  },
+  {
+    path:"/UserReg",
+    component : UserReg
   },
   {
     path : "AdminSurvey",
