@@ -1,5 +1,6 @@
 package Goweb.FormMaker.controller.vote;
 
+import Goweb.FormMaker.dto.vote.AllVotesDTO;
 import Goweb.FormMaker.dto.vote.CreateVoteDTO;
 import Goweb.FormMaker.dto.vote.VoteResultDTO;
 import Goweb.FormMaker.domain.vote.Vote;
@@ -22,9 +23,9 @@ public class AdminVoteController {
 
     @Operation(summary = "모든 투표 목록 보기")
     @GetMapping
-    public ResponseEntity<List<Vote>> getAllVotes() {
-        List<Vote> votes = voteService.getAllVotes();
-        return ResponseEntity.ok(votes);
+    public ResponseEntity<List<AllVotesDTO>> getAllVotes() {
+        List<AllVotesDTO> allVotes = voteService.getAllVotes();
+        return ResponseEntity.ok(allVotes);
     }
 
     @Operation(summary = "투표 생성하기")
