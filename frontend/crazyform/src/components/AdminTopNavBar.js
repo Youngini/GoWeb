@@ -10,7 +10,7 @@ const AdminTopNavbar = () => {
     const location = useLocation();
     const navigate = useNavigate();
     const surveyButtonBackground = location.pathname.startsWith('/AdminSurvey') ? '#EAA0A0' : 'white';
-    const voteButtonBackground = location.pathname === '/AdminVote' ? '#EAA0A0' : 'white';
+    const voteButtonBackground = location.pathname.startsWith('/AdminVote') ? '#EAA0A0' : 'white';
     const [id, setId] = useState('');
     const [password, setPassword] = useState('');
     const [isSignUpModal, setIsSignUpModal] = useState(false)
@@ -23,7 +23,7 @@ const AdminTopNavbar = () => {
     }
 
     const goToAdminVote = () => {
-        navigate('/AdminVote')
+        navigate(`/AdminVote/${token}`)
     }
 
     const openSignUpModal = () => {

@@ -1,5 +1,4 @@
-import { useState, useEffect } from "react";
-import { useLocation } from "react-router-dom";
+import React, { useEffect } from "react";
 import "../style/VoteQuestion.css";
 
 const CHOICE_TYPES = {
@@ -7,8 +6,7 @@ const CHOICE_TYPES = {
   MULTIPLE_CHOICE: "multiple_choice",
 };
 
-export default function VoteQuestion({ question, onUpdate, onDelete }) {
-  // 기본적으로 단일 선택 상태로 설정
+export default function VoteQuestion({ question, onUpdate }) {
   useEffect(() => {
     if (!question.type) {
       onUpdate({
