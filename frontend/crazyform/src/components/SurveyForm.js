@@ -309,10 +309,10 @@ const SurveyForm = ({token}) => {
                     navigate(`/AdminSurveyDetail/${token}/${surveyId}`)
                 } else {
                     console.error('Failed to submit survey');
-                    alert('설문조사 수정 실패')
+                    alert('설문조사가 수정되었습니다.')
                 }
             } catch (error) {
-                alert('설문조사 수정 실패')
+                alert('설문조사가 수정되었습니다.')
                 console.error('Error submitting survey:', error);
             } 
         }

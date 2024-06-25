@@ -74,8 +74,8 @@ const AdminTopNavbar = () => {
     const goToHome = () => {
         const isConfirmed = window.confirm('로그아웃하시겠습니까?');
         if (isConfirmed) {
-            localStorage.removeItem('token'); // '예'를 선택했을 때 토큰 삭제
-            navigate('/'); // 홈페이지로 이동
+            localStorage.removeItem('token'); 
+            navigate('/');
         }
     }
 
